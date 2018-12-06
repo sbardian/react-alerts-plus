@@ -2,8 +2,8 @@
   "env": {
     "cypress/globals": true
   },
-  "extends": ["airbnb", "prettier"],
+  "extends": ["airbnb", "prettier", "plugin:jsx-a11y/recommended"],
   "parser": "babel-eslint",
   "rules": {},
-  "plugins": ["react", "jsx-a11y", "import", "cypress"]
+  "plugins": ["react", "import", "cypress"]
 }
