@@ -4,6 +4,8 @@
   },
   "extends": ["airbnb", "prettier", "plugin:jsx-a11y/recommended"],
   "parser": "babel-eslint",
-  "rules": {},
+  "rules": {
+    "react/jsx-filename-extension": "off"
+  },
   "plugins": ["react", "import", "cypress"]
 }
