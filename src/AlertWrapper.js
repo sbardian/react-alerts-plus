@@ -1,6 +1,6 @@
 import React from 'react';
-import { AlertContext } from './Context';
-import { Provider } from './Provider';
+import AlertContext from './AlertContext';
+import Provider from './Provider';
 
 export const AlertWrapper = ({ children: WrappedComponent }) => (
   <Provider>
@@ -15,3 +15,5 @@ export const AlertWrapper = ({ children: WrappedComponent }) => (
     </AlertContext.Consumer>
   </Provider>
 );
+
+export default AlertWrapper;

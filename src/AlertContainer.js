@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export const AlertContainer = ({ children, position }) => {
+const AlertContainer = ({ children, position }) => {
   const containerPosition = position;
   return (
     <div style={{ ...containerPosition }} className="alertContainer">
@@ -8,3 +8,5 @@ export const AlertContainer = ({ children, position }) => {
     </div>
   );
 };
+
+export default AlertContainer;

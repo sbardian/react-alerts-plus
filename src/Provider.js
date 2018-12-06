@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { groupBy } from 'lodash';
 import { createPortal } from 'react-dom';
-import { AlertContext } from './Context';
-import { getPosition } from './getPosition';
-import { AlertContainer } from './AlertContainer';
+import AlertContext from './AlertContext';
+import getPosition from './getPosition';
+import AlertContainer from './AlertContainer';
 
-export class Provider extends React.Component {
+export default class Provider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

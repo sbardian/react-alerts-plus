@@ -1,60 +1,71 @@
-export const getPosition = position => {
+const getPosition = position => {
   switch (position) {
-    case "top left":
+    case 'top left':
       return {
-        position: "absolute",
+        position: 'absolute',
         top: 0,
-        right: "auto",
-        bottom: "auto",
+        right: 'auto',
+        bottom: 'auto',
         left: 0,
-        zIndex: 100
+        zIndex: 100,
       };
-    case "top right":
+    case 'top right':
       return {
-        position: "absolute",
+        position: 'absolute',
         top: 0,
         right: 0,
-        bottom: "auto",
-        left: "auto",
-        zIndex: 100
+        bottom: 'auto',
+        left: 'auto',
+        zIndex: 100,
       };
-    case "bottom left":
+    case 'bottom left':
       return {
-        position: "absolute",
-        top: "auto",
-        right: "auto",
+        position: 'absolute',
+        top: 'auto',
+        right: 'auto',
         bottom: 0,
         left: 0,
-        zIndex: 100
+        zIndex: 100,
       };
-    case "bottom right":
+    case 'bottom right':
       return {
-        position: "absolute",
-        top: "auto",
+        position: 'absolute',
+        top: 'auto',
         right: 0,
         bottom: 0,
-        left: "auto",
-        zIndex: 100
+        left: 'auto',
+        zIndex: 100,
       };
-    case "top center":
+    case 'top center':
       return {
-        position: "absolute",
+        position: 'absolute',
         top: 0,
-        right: "auto",
-        bottom: "auto",
-        left: "50%",
-        transform: "translate(-50%, 0%)",
-        zIndex: 100
+        right: 'auto',
+        bottom: 'auto',
+        left: '50%',
+        transform: 'translate(-50%, 0%)',
+        zIndex: 100,
       };
-    case "bottom center":
+    case 'bottom center':
       return {
-        position: "absolute",
-        top: "auto",
-        right: "auto",
+        position: 'absolute',
+        top: 'auto',
+        right: 'auto',
         bottom: 0,
-        left: "50%",
-        transform: "translate(-50%, 0%)",
-        zIndex: 100
+        left: '50%',
+        transform: 'translate(-50%, 0%)',
+        zIndex: 100,
+      };
+    default:
+      return {
+        position: 'absolute',
+        top: 0,
+        right: 'auto',
+        bottom: 'auto',
+        left: 0,
+        zIndex: 100,
       };
   }
 };
+
+export default getPosition;
