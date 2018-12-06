@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AlertWrapper } from '../src/AlertWrapper';
+import MyAlertWrapper from '../src';
 
 class App extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <AlertWrapper>
+        <MyAlertWrapper>
           {({ show, close }) => (
             <div>
               <button type="button" onClick={() => message()}>
@@ -79,7 +79,7 @@ class App extends React.Component {
               </button>
             </div>
           )}
-        </AlertWrapper>
+        </MyAlertWrapper>
       </div>
     );
   }
