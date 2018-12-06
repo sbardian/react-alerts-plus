@@ -2,14 +2,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: path.join(__dirname, '/src/index.html'),
+  template: path.join(__dirname, '/examples/index.html'),
   filename: 'index.html',
   inject: 'body',
 });
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/index.js'],
+  entry: ['./examples/index.js'],
   output: {
     path: path.join(__dirname, '/lib/'),
     publicPath: '/',
