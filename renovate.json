@@ -1,18 +1,11 @@
 {
   "extends": ["config:base"],
   "commitMessage": "Update {{depName}} to {{newVersion}}",
-  "automergeType": "branch-push",
+  "automergeType": "branch",
   "automerge": true,
   "major": {
     "automerge": false
   },
   "prConcurrentLimit": 0,
-  "prHourlyLimit": 0,
-  "packageRules": [
-    {
-      "description": "Disable react monorepo grouping",
-      "extends": "monorepo:react",
-      "groupName": null
-    }
-  ]
+  "prHourlyLimit": 0
 }
