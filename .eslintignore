@@ -1,0 +1,4 @@
+lib
+coverage
+.vscode
+.nyc_output
