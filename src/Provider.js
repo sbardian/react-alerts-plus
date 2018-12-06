@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { groupBy } from 'lodash';
 import { createPortal } from 'react-dom';
 import AlertContext from './AlertContext';
@@ -6,6 +7,13 @@ import getPosition from './getPosition';
 import AlertContainer from './AlertContainer';
 
 export default class Provider extends React.Component {
+  static propTypes = {
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]).isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -47,10 +55,9 @@ export default class Provider extends React.Component {
     };
 
     const close = id => {
-      const { alerts } = this.state;
-      const newAlerts = alerts.filter(alert => alert.id !== id);
+      const { alerts: currentAlerts } = this.state;
       this.setState({
-        alerts: newAlerts,
+        alerts: currentAlerts.filter(alert => alert.id !== id),
       });
     };
 
@@ -68,31 +75,26 @@ export default class Provider extends React.Component {
         {root &&
           createPortal(
             <Fragment>
-              {Object.keys(orderedAlerts).map(position => {
-                return (
-                  <AlertContainer
-                    key={position}
-                    position={getPosition(position)}
-                  >
-                    {orderedAlerts[position].map(alert => {
-                      setTimeout(() => close(alert.id), alert.duration);
-                      return (
-                        <div
-                          key={alert.id}
-                          id={alert.id}
-                          hidden={alert.hidden}
-                          style={{ ...alert.style }}
-                        >
-                          {alert.message}
-                          <button type="button" onClick={() => close(alert.id)}>
-                            close
-                          </button>
-                        </div>
-                      );
-                    })}
-                  </AlertContainer>
-                );
-              })}
+              {Object.keys(orderedAlerts).map(position => (
+                <AlertContainer key={position} position={getPosition(position)}>
+                  {orderedAlerts[position].map(a => {
+                    setTimeout(() => close(a.id), a.duration);
+                    return (
+                      <div
+                        key={a.id}
+                        id={a.id}
+                        hidden={a.hidden}
+                        style={{ ...a.style }}
+                      >
+                        {a.message}
+                        <button type="button" onClick={() => close(a.id)}>
+                          close
+                        </button>
+                      </div>
+                    );
+                  })}
+                </AlertContainer>
+              ))}
             </Fragment>,
             root,
           )}
