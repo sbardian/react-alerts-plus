@@ -16,8 +16,7 @@
     "test:run": "cypress run",
     "test:open": "cypress open",
     "build": "babel src -d lib",
-    "prepublishOnly": "build",
-    "publish": "npm publish"
+    "prepublishOnly": "build"
   },
   "dependencies": {
     "lodash": "4.17.11",
