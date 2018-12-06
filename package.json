@@ -12,7 +12,7 @@
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src",
-    "dev": "npx webpack-dev-server  --mode development",
+    "dev": "webpack-dev-server  --mode development",
     "test:run": "cypress run",
     "test:open": "cypress open",
     "build": "babel src -d lib",
@@ -49,6 +49,7 @@
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.2",
     "webpack": "4.26.1",
-    "webpack-cli": "3.1.2"
+    "webpack-cli": "3.1.2",
+    "webpack-dev-server": "^3.1.10"
   }
 }
