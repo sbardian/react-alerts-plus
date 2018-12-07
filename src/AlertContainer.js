@@ -16,13 +16,12 @@ AlertContainer.propTypes = {
   ]).isRequired,
   position: PropTypes.shape({
     position: PropTypes.string.isRequired,
-    top: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    right: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    bottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-      .isRequired,
-    left: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    top: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    right: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    bottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    left: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     transform: PropTypes.string,
-    zIndex: PropTypes.number.isRequired,
+    zIndex: PropTypes.number,
   }).isRequired,
 };
 

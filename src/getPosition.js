@@ -1,70 +1,52 @@
-const getPosition = position => {
+const getPosition = (position, offset, zIndex = 100) => {
+  console.log('offset = ', offset);
   switch (position) {
     case 'top left':
       return {
-        position: 'absolute',
-        top: 0,
-        right: 'auto',
-        bottom: 'auto',
-        left: 0,
-        zIndex: 100,
+        position: 'fixed',
+        top: `${offset}`,
+        left: `${offset}`,
+        zIndex,
       };
     case 'top right':
       return {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 'auto',
-        left: 'auto',
-        zIndex: 100,
+        position: 'fixed',
+        top: `${offset}`,
+        right: `${offset}`,
+        zIndex,
       };
     case 'bottom left':
       return {
-        position: 'absolute',
-        top: 'auto',
-        right: 'auto',
-        bottom: 0,
-        left: 0,
-        zIndex: 100,
+        position: 'fixed',
+        bottom: `${offset}`,
+        left: `${offset}`,
+        zIndex,
       };
     case 'bottom right':
       return {
-        position: 'absolute',
-        top: 'auto',
-        right: 0,
-        bottom: 0,
-        left: 'auto',
-        zIndex: 100,
+        position: 'fixed',
+        bottom: `${offset}`,
+        right: `${offset}`,
+        zIndex,
       };
     case 'top center':
       return {
-        position: 'absolute',
-        top: 0,
-        right: 'auto',
-        bottom: 'auto',
-        left: '50%',
+        position: 'fixed',
+        top: `${offset}`,
+        left: `50%`,
         transform: 'translate(-50%, 0%)',
-        zIndex: 100,
+        zIndex,
       };
     case 'bottom center':
       return {
-        position: 'absolute',
-        top: 'auto',
-        right: 'auto',
-        bottom: 0,
-        left: '50%',
+        position: 'fixed',
+        bottom: `${offset}`,
+        left: `50%`,
         transform: 'translate(-50%, 0%)',
-        zIndex: 100,
+        zIndex,
       };
     default:
-      return {
-        position: 'absolute',
-        top: 0,
-        right: 'auto',
-        bottom: 'auto',
-        left: 0,
-        zIndex: 100,
-      };
+      return null;
   }
 };
 

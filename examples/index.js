@@ -11,14 +11,16 @@ class App extends React.Component {
   }
 
   render() {
+    const offset = '60px';
+
     const topLeft = {
       style: {
-        backgroundColor: 'red',
-        height: '40px',
-        maxWidth: '150px',
-        margin: '10px',
+        /**
+         * put any override styles here.
+         */
+        // backgroundColor: 'blue',
       },
-      duration: 4000,
+      duration: 2000,
       position: 'top left',
     };
 
@@ -37,6 +39,16 @@ class App extends React.Component {
       position: 'bottom left',
     };
 
+    const topCenter = {
+      ...topLeft,
+      position: 'top center',
+    };
+
+    const bottomCenter = {
+      ...topLeft,
+      position: 'bottom center',
+    };
+
     const message = () => {
       this.setState({
         alertMessage: Math.random().toString(),
@@ -53,26 +65,41 @@ class App extends React.Component {
               <button type="button" onClick={() => message()}>
                 update message
               </button>
-              <button type="button" onClick={() => show(alertMessage, topLeft)}>
+              <button
+                type="button"
+                onClick={() => show(alertMessage, topLeft, offset)}
+              >
                 top left
               </button>
               <button
                 type="button"
-                onClick={() => show(alertMessage, topRight)}
+                onClick={() => show(alertMessage, topRight, offset)}
               >
                 top right
               </button>
               <button
                 type="button"
-                onClick={() => show(alertMessage, bottomLeft)}
+                onClick={() => show(alertMessage, bottomLeft, offset)}
               >
                 bottom left
               </button>
               <button
                 type="button"
-                onClick={() => show(alertMessage, bottomRight)}
+                onClick={() => show(alertMessage, bottomRight, offset)}
               >
                 bottom right
+              </button>
+              <button
+                type="button"
+                onClick={() => show(alertMessage, topCenter, offset)}
+              >
+                top center
+              </button>
+              <button
+                type="button"
+                onClick={() => show(alertMessage, bottomCenter, offset)}
+              >
+                bottom center
               </button>
             </div>
           )}
