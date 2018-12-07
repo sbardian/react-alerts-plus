@@ -19,19 +19,7 @@
     "prepublishOnly": "build"
   },
   "files": [
-    "src",
-    "cypress",
-    "examples",
-    ".babelrc",
-    ".gitignore",
-    ".editorconfig",
-    ".eslintignore",
-    ".eslintrc.json",
-    ".prettierignore",
-    ".prettierrc",
-    "cypress.json",
-    "renovate.json",
-    "webpack.config.js"
+    "lib"
   ],
   "dependencies": {
     "lodash": "4.17.11",
