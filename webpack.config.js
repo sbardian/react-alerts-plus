@@ -11,8 +11,8 @@ module.exports = {
   mode: 'development',
   entry: ['./examples/index.js'],
   output: {
-    path: path.join(__dirname, '/lib/'),
-    publicPath: '/',
+    path: path.join(__dirname, '/examples/lib/'),
+    publicPath: '/examples/',
     filename: 'index_bundle.js',
   },
   devServer: {
@@ -22,6 +22,7 @@ module.exports = {
       'Access-Control-Allow-Headers': 'Content-Type',
     },
     port: 3001,
+    contentBase: path.join(__dirname, '/examples/lib'),
   },
   module: {
     rules: [
