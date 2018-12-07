@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom';
 import AlertContext from './AlertContext';
 import getPosition from './getPosition';
 import AlertContainer from './AlertContainer';
+import Alert from './Alert';
 
 export default class Provider extends React.Component {
   static propTypes = {
@@ -16,19 +17,14 @@ export default class Provider extends React.Component {
     ]).isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      hidden: true,
-      style: {},
-      message: '',
-      offset: '10px',
-      id: null,
-      alerts: [],
-      root: null,
-      IconComponent: null,
-    };
-  }
+  state = {
+    alerts: [],
+    id: null,
+    message: '',
+    offset: '10px',
+    root: null,
+    style: {},
+  };
 
   componentDidMount() {
     const root = document.createElement('div');
@@ -38,28 +34,25 @@ export default class Provider extends React.Component {
 
   show = (
     message,
-    { style, duration, id, position },
+    { style, duration, id, position, IconComponent },
     offset,
-    IconComponent,
   ) => {
-    console.log('show offset = ', offset);
     const { alerts } = this.state;
     this.setState({
-      hidden: false,
-      style,
-      message,
-      offset,
-      IconComponent,
       alerts: [
         ...alerts,
         {
+          duration: duration || 4000,
+          id: id || Math.random(),
+          message: message || 'default message',
           position,
           style: style || {},
-          duration: duration || 4000,
-          message: message || 'default message',
-          id: id || Math.random(),
+          IconComponent,
         },
       ],
+      message,
+      offset,
+      style,
     });
   };
 
@@ -72,7 +65,7 @@ export default class Provider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { alerts, root, offset, IconComponent } = this.state;
+    const { alerts, root, offset } = this.state;
 
     const alert = {
       ...this.state,
@@ -95,45 +88,7 @@ export default class Provider extends React.Component {
                 >
                   {orderedAlerts[position].map(a => {
                     setTimeout(() => this.close(a.id), a.duration);
-                    return (
-                      <div
-                        key={a.id}
-                        id={a.id}
-                        hidden={a.hidden}
-                        css={{
-                          margin: '10px',
-                          width: '300px',
-                          padding: '20px',
-                          background: '#fff',
-                          borderRadius: '5px',
-                          border: '1px solid black',
-                          position: 'relative',
-                          transition: 'all 5s ease-in-out',
-                        }}
-                        style={{ ...a.style, margin: a.offset }}
-                      >
-                        {IconComponent && (
-                          <div
-                            css={{
-                              float: 'left',
-                              paddingRight: '10px',
-                            }}
-                          >
-                            <IconComponent />
-                          </div>
-                        )}
-                        {a.message}
-                        <button
-                          type="button"
-                          onClick={() => this.close(a.id)}
-                          css={{
-                            float: 'right',
-                          }}
-                        >
-                          close
-                        </button>
-                      </div>
-                    );
+                    return <Alert key={a.id} alert={a} close={this.close} />;
                   })}
                 </AlertContainer>
               ))}

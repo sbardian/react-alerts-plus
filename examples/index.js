@@ -36,6 +36,7 @@ class App extends React.Component {
     const topRight = {
       ...topLeft,
       position: 'top right',
+      IconComponent: () => <Question />,
     };
 
     const bottomRight = {
@@ -76,7 +77,7 @@ class App extends React.Component {
               </button>
               <button
                 type="button"
-                onClick={() => show(alertMessage, topLeft, offset, Question)}
+                onClick={() => show(alertMessage, topLeft, offset)}
               >
                 top left
               </button>
