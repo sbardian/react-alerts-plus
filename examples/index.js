@@ -74,9 +74,6 @@ class App extends React.Component {
               >
                 bottom right
               </button>
-              <button type="button" onClick={() => close()}>
-                close
-              </button>
             </div>
           )}
         </MyAlertWrapper>
