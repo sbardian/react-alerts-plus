@@ -25,6 +25,7 @@
     "@emotion/core": "^10.0.4",
     "lodash": "4.17.11",
     "prop-types": "^15.6.2",
+    "react-icons": "^3.2.2",
     "yarn": "^1.12.3"
   },
   "devDependencies": {

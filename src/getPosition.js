@@ -1,5 +1,4 @@
 const getPosition = (position, offset, zIndex = 100) => {
-  console.log('offset = ', offset);
   switch (position) {
     case 'top left':
       return {

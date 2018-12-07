@@ -26,6 +26,7 @@ export default class Provider extends React.Component {
       id: null,
       alerts: [],
       root: null,
+      IconComponent: null,
     };
   }
 
@@ -35,7 +36,12 @@ export default class Provider extends React.Component {
     this.setState({ root });
   }
 
-  show = (message, { style, duration, id, position }, offset) => {
+  show = (
+    message,
+    { style, duration, id, position },
+    offset,
+    IconComponent,
+  ) => {
     console.log('show offset = ', offset);
     const { alerts } = this.state;
     this.setState({
@@ -43,6 +49,7 @@ export default class Provider extends React.Component {
       style,
       message,
       offset,
+      IconComponent,
       alerts: [
         ...alerts,
         {
@@ -65,7 +72,7 @@ export default class Provider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { alerts, root, offset } = this.state;
+    const { alerts, root, offset, IconComponent } = this.state;
 
     const alert = {
       ...this.state,
@@ -105,6 +112,16 @@ export default class Provider extends React.Component {
                         }}
                         style={{ ...a.style, margin: a.offset }}
                       >
+                        {IconComponent && (
+                          <div
+                            css={{
+                              float: 'left',
+                              paddingRight: '10px',
+                            }}
+                          >
+                            <IconComponent />
+                          </div>
+                        )}
                         {a.message}
                         <button
                           type="button"

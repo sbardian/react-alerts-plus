@@ -1,6 +1,15 @@
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable react/no-multi-comp */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { FaBeer } from 'react-icons/fa';
 import MyAlertWrapper from '../src';
+
+class Question extends React.Component {
+  render() {
+    return <FaBeer />;
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +29,7 @@ class App extends React.Component {
          */
         // backgroundColor: 'blue',
       },
-      duration: 2000,
+      duration: 20000,
       position: 'top left',
     };
 
@@ -67,7 +76,7 @@ class App extends React.Component {
               </button>
               <button
                 type="button"
-                onClick={() => show(alertMessage, topLeft, offset)}
+                onClick={() => show(alertMessage, topLeft, offset, Question)}
               >
                 top left
               </button>
