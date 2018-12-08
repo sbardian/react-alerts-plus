@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { FaBeer } from 'react-icons/fa';
-import MyAlertWrapper from '../src';
+import { AlertProvider, AlertWrapper } from '../src';
 
 class Question extends React.Component {
   render() {
@@ -75,53 +75,55 @@ class App extends React.Component {
     const { alertMessage } = this.state;
 
     return (
-      <div className="App">
-        <MyAlertWrapper>
-          {({ show, close }) => (
-            <div>
-              <button type="button" onClick={() => message()}>
-                update message
-              </button>
-              <button
-                type="button"
-                onClick={() => show(alertMessage, topLeft, offset)}
-              >
-                top left
-              </button>
-              <button
-                type="button"
-                onClick={() => show(alertMessage, topRight, offset)}
-              >
-                top right
-              </button>
-              <button
-                type="button"
-                onClick={() => show(alertMessage, bottomLeft, offset)}
-              >
-                bottom left
-              </button>
-              <button
-                type="button"
-                onClick={() => show(alertMessage, bottomRight, offset)}
-              >
-                bottom right
-              </button>
-              <button
-                type="button"
-                onClick={() => show(alertMessage, topCenter, offset)}
-              >
-                top center
-              </button>
-              <button
-                type="button"
-                onClick={() => show(alertMessage, bottomCenter, offset)}
-              >
-                bottom center
-              </button>
-            </div>
-          )}
-        </MyAlertWrapper>
-      </div>
+      <AlertProvider>
+        <div className="App">
+          <AlertWrapper>
+            {({ show, close }) => (
+              <div>
+                <button type="button" onClick={() => message()}>
+                  update message
+                </button>
+                <button
+                  type="button"
+                  onClick={() => show(alertMessage, topLeft, offset)}
+                >
+                  top left
+                </button>
+                <button
+                  type="button"
+                  onClick={() => show(alertMessage, topRight, offset)}
+                >
+                  top right
+                </button>
+                <button
+                  type="button"
+                  onClick={() => show(alertMessage, bottomLeft, offset)}
+                >
+                  bottom left
+                </button>
+                <button
+                  type="button"
+                  onClick={() => show(alertMessage, bottomRight, offset)}
+                >
+                  bottom right
+                </button>
+                <button
+                  type="button"
+                  onClick={() => show(alertMessage, topCenter, offset)}
+                >
+                  top center
+                </button>
+                <button
+                  type="button"
+                  onClick={() => show(alertMessage, bottomCenter, offset)}
+                >
+                  bottom center
+                </button>
+              </div>
+            )}
+          </AlertWrapper>
+        </div>
+      </AlertProvider>
     );
   }
 }

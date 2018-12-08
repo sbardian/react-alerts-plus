@@ -9,7 +9,7 @@ import getPosition from './getPosition';
 import AlertContainer from './AlertContainer';
 import Alert from './Alert';
 
-export default class Provider extends React.Component {
+export default class AlertProvider extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
