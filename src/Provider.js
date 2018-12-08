@@ -34,7 +34,7 @@ export default class Provider extends React.Component {
 
   show = (
     message,
-    { style, duration, id, position, IconComponent },
+    { style, duration, id, position, IconComponent, CloseComponent },
     offset,
   ) => {
     const { alerts } = this.state;
@@ -48,6 +48,7 @@ export default class Provider extends React.Component {
           position,
           style: style || {},
           IconComponent,
+          CloseComponent,
         },
       ],
       message,

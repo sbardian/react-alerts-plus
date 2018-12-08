@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { jsx } from '@emotion/core';
 
 const Alert = ({
-  alert: { style, offset, id, message, IconComponent },
+  alert: { style, offset, id, message, IconComponent, CloseComponent },
   close,
 }) => (
   <div
@@ -32,15 +32,31 @@ const Alert = ({
       </div>
     )}
     {message}
-    <button
-      type="button"
-      onClick={() => close(id)}
-      css={{
-        float: 'right',
-      }}
-    >
-      close
-    </button>
+    {CloseComponent && (
+      <button
+        type="button"
+        onClick={() => close(id)}
+        css={{
+          float: 'right',
+          border: 'none',
+          background: 'none',
+          padding: 0,
+        }}
+      >
+        <CloseComponent />
+      </button>
+    )}
+    {!CloseComponent && (
+      <button
+        type="button"
+        onClick={() => close(id)}
+        css={{
+          float: 'right',
+        }}
+      >
+        Close
+      </button>
+    )}
   </div>
 );
 
@@ -51,6 +67,7 @@ Alert.propTypes = {
     message: PropTypes.string,
     position: PropTypes.string,
     IconComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    CloseComponent: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   }).isRequired,
   close: PropTypes.func.isRequired,
 };

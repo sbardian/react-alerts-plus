@@ -11,6 +11,12 @@ class Question extends React.Component {
   }
 }
 
+class CloseComponent extends React.Component {
+  render() {
+    return <button type="button">fucking close</button>;
+  }
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +43,7 @@ class App extends React.Component {
       ...topLeft,
       position: 'top right',
       IconComponent: () => <Question />,
+      CloseComponent: () => <Question />,
     };
 
     const bottomRight = {
