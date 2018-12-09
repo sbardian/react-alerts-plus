@@ -38,7 +38,9 @@ export default class AlertProvider extends React.Component {
   ) => {
     const { alerts } = this.state;
     const key = Math.random();
-    const randomId = Math.random();
+    const randomId = Math.random()
+      .toString(36)
+      .substring(7);
 
     this.setState({
       alerts: [
