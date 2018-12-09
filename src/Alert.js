@@ -7,6 +7,10 @@ const Alert = ({
   alert: { style, offset, id, message, IconComponent, CloseComponent },
   close,
 }) => (
+  /**
+   * TODO: enable passing some kind of alert theme, instead of
+   *       only being able to override the styles.  Similar to react-alert
+   */
   <div
     id={id}
     css={{
