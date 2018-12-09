@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@emotion/core';
-import { groupBy } from 'lodash';
+import groupBy from 'lodash/groupBy';
 import { createPortal } from 'react-dom';
 import AlertContext from './AlertContext';
 import getPosition from './getPosition';
