@@ -100,6 +100,9 @@ export default class AlertProvider extends React.Component {
                   position={getPosition(position, offset)}
                 >
                   {orderedAlerts[position].map(a => {
+                    /**
+                     * TODO: use a different way / timer method to remove alerts.
+                     */
                     if (a.duration !== 0) {
                       setTimeout(() => this.close(a.id), a.duration);
                       const { AlertComponent } = a;
