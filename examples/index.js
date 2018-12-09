@@ -35,13 +35,18 @@ class App extends React.Component {
          */
         // backgroundColor: 'blue',
       },
-      duration: 20000,
+      duration: 2000,
       position: 'top left',
     };
 
     const topRight = {
       ...topLeft,
+      style: {
+        backgroundColor: 'cornflowerblue',
+        borderRadius: 0,
+      },
       position: 'top right',
+      duration: 0,
       IconComponent: () => <Question />,
       CloseComponent: () => <Question />,
     };
