@@ -49,6 +49,7 @@ class App extends React.Component {
     const bottomRight = {
       ...topLeft,
       position: 'bottom right',
+      id: 'my-alert',
     };
 
     const bottomLeft = {
