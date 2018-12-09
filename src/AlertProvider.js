@@ -37,13 +37,16 @@ export default class AlertProvider extends React.Component {
     offset,
   ) => {
     const { alerts } = this.state;
+    const key = Math.random();
+    const randomId = Math.random();
+
     this.setState({
       alerts: [
         ...alerts,
         {
           duration: duration || 4000,
-          id: id || Math.random(),
-          key: Math.random(),
+          id: id || randomId,
+          key,
           message: message || 'default message',
           position,
           style: style || {},
@@ -55,6 +58,7 @@ export default class AlertProvider extends React.Component {
       offset,
       style,
     });
+    return id || randomId;
   };
 
   close = id => {

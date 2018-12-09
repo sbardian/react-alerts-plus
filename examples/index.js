@@ -98,13 +98,22 @@ class App extends React.Component {
                 </button>
                 <button
                   type="button"
-                  onClick={() => show(alertMessage, bottomLeft, offset)}
+                  onClick={() => {
+                    const test = show(alertMessage, bottomLeft, offset);
+                    console.log('bottomLeft = ', test);
+                    setTimeout(() => {
+                      close(test);
+                    }, 2000);
+                  }}
                 >
                   bottom left
                 </button>
                 <button
                   type="button"
-                  onClick={() => show(alertMessage, bottomRight, offset)}
+                  onClick={() => {
+                    const myAlert = show(alertMessage, bottomRight, offset);
+                    console.log('myAlert = ', myAlert);
+                  }}
                 >
                   bottom right
                 </button>
@@ -119,6 +128,9 @@ class App extends React.Component {
                   onClick={() => show(alertMessage, bottomCenter, offset)}
                 >
                   bottom center
+                </button>
+                <button type="button" onClick={() => close('my-alert')}>
+                  close
                 </button>
               </div>
             )}
