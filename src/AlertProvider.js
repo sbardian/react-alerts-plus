@@ -31,11 +31,17 @@ export default class AlertProvider extends React.Component {
     this.setState({ root });
   }
 
-  show = (
+  show = ({
     message,
-    { style, duration, id, position, IconComponent, CloseComponent },
+    style,
+    duration,
+    id,
+    position,
+    IconComponent,
+    CloseComponent,
+    AlertComponent,
     offset,
-  ) => {
+  }) => {
     const { alerts } = this.state;
     const key = Math.random();
     const randomId = Math.random()
@@ -54,9 +60,9 @@ export default class AlertProvider extends React.Component {
           style: style || {},
           IconComponent,
           CloseComponent,
+          AlertComponent,
         },
       ],
-      message,
       offset,
       style,
     });
@@ -96,6 +102,10 @@ export default class AlertProvider extends React.Component {
                   {orderedAlerts[position].map(a => {
                     if (a.duration !== 0) {
                       setTimeout(() => this.close(a.id), a.duration);
+                      const { AlertComponent } = a;
+                      if (AlertComponent) {
+                        return <AlertComponent key={a.key} />;
+                      }
                       return <Alert key={a.key} alert={a} close={this.close} />;
                     }
                     return <Alert key={a.key} alert={a} close={this.close} />;

@@ -17,6 +17,12 @@ class CloseComponent extends React.Component {
   }
 }
 
+class AlertComponent extends React.Component {
+  render() {
+    return <div key="meh">yo im a component</div>;
+  }
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +33,7 @@ class App extends React.Component {
 
   render() {
     const offset = '60px';
+    const { alertMessage } = this.state;
 
     const topLeft = {
       style: {
@@ -35,6 +42,8 @@ class App extends React.Component {
          */
         // backgroundColor: 'blue',
       },
+      alertMessage,
+      offset,
       duration: 2000,
       position: 'top left',
     };
@@ -70,6 +79,8 @@ class App extends React.Component {
     const bottomCenter = {
       ...topLeft,
       position: 'bottom center',
+      duration: 4000,
+      AlertComponent,
     };
 
     const message = () => {
@@ -77,8 +88,6 @@ class App extends React.Component {
         alertMessage: Math.random().toString(),
       });
     };
-
-    const { alertMessage } = this.state;
 
     return (
       <AlertProvider>
@@ -89,22 +98,16 @@ class App extends React.Component {
                 <button type="button" onClick={() => message()}>
                   update message
                 </button>
-                <button
-                  type="button"
-                  onClick={() => show(alertMessage, topLeft, offset)}
-                >
+                <button type="button" onClick={() => show(topLeft)}>
                   top left
                 </button>
-                <button
-                  type="button"
-                  onClick={() => show(alertMessage, topRight, offset)}
-                >
+                <button type="button" onClick={() => show(topRight)}>
                   top right
                 </button>
                 <button
                   type="button"
                   onClick={() => {
-                    const test = show(alertMessage, bottomLeft, offset);
+                    const test = show(bottomLeft);
                     console.log('bottomLeft = ', test);
                     setTimeout(() => {
                       close(test);
@@ -116,22 +119,16 @@ class App extends React.Component {
                 <button
                   type="button"
                   onClick={() => {
-                    const myAlert = show(alertMessage, bottomRight, offset);
+                    const myAlert = show(bottomRight);
                     console.log('myAlert = ', myAlert);
                   }}
                 >
                   bottom right
                 </button>
-                <button
-                  type="button"
-                  onClick={() => show(alertMessage, topCenter, offset)}
-                >
+                <button type="button" onClick={() => show(topCenter)}>
                   top center
                 </button>
-                <button
-                  type="button"
-                  onClick={() => show(alertMessage, bottomCenter, offset)}
-                >
+                <button type="button" onClick={() => show(bottomCenter)}>
                   bottom center
                 </button>
                 <button type="button" onClick={() => close('my-alert')}>
