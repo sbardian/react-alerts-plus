@@ -2,9 +2,71 @@
 
 # react-alerts
 
-Alerts for react
+Alerts for react.
 
-Options:
+Installation:
+
+```
+yarn add react-alerts
+```
+
+or
+
+```
+npm install react-alerts
+```
+
+Usage: Wrap your app in our provider:
+
+```
+import React from 'react';
+import { AlertProvider } from 'react-alerts';
+
+class MyApp extends React.Component {
+  render() {
+    return (
+      <AlertProvider>
+        <App />
+      </AlertProvider>
+    )
+  }
+}
+```
+
+In your app where you would like to show alerts
+
+```
+import { AlertWrapper } from 'react-alerts';
+...
+...
+render() {
+  const options = {
+        style: {
+          backgroundColor: 'cornflowerblue',
+          borderRadius: 0,
+        },
+        position: 'top right',
+        duration: 0,
+        IconComponent: () => <QuestionMarkIcon />,
+        CloseComponent: () => <CloseIcon />,
+        AertComponent: () => <MyCustomAlert />
+      }
+  }
+
+  return (
+    <div>
+      <button>
+        <AlertWrapper>
+          {({show, close}) => (
+            <button type="button" onClick={() => show(options)}>Show Alert</button>
+          )}
+        </AlertWrapper>
+    </div>
+  )
+}
+```
+
+Alert Options:
 
 ```
 options: <Object> defining options for the alert:
