@@ -42,7 +42,7 @@ class App extends React.Component {
          */
         // backgroundColor: 'blue',
       },
-      alertMessage,
+      message: alertMessage,
       offset,
       duration: 2000,
       position: 'top left',
@@ -88,6 +88,8 @@ class App extends React.Component {
         alertMessage: Math.random().toString(),
       });
     };
+
+    console.log('alertMessage: ', alertMessage);
 
     return (
       <AlertProvider>

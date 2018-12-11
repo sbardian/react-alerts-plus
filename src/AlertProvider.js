@@ -19,10 +19,8 @@ export default class AlertProvider extends React.Component {
 
   state = {
     alerts: [],
-    message: '',
     offset: '10px',
     root: null,
-    style: {},
   };
 
   componentDidMount() {
@@ -64,7 +62,6 @@ export default class AlertProvider extends React.Component {
         },
       ],
       offset,
-      style,
     });
     return id || randomId;
   };
