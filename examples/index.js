@@ -36,12 +36,7 @@ class App extends React.Component {
     const { alertMessage } = this.state;
 
     const topLeft = {
-      style: {
-        /**
-         * put any override styles here.
-         */
-        // backgroundColor: 'blue',
-      },
+      style: {},
       message: alertMessage,
       offset,
       duration: 2000,
@@ -74,6 +69,7 @@ class App extends React.Component {
     const topCenter = {
       ...topLeft,
       position: 'top center',
+      theme: 'dark',
     };
 
     const bottomCenter = {
@@ -88,8 +84,6 @@ class App extends React.Component {
         alertMessage: Math.random().toString(),
       });
     };
-
-    console.log('alertMessage: ', alertMessage);
 
     return (
       <AlertProvider>

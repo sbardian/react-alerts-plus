@@ -2,29 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@emotion/core';
+import { dark, light } from './AlertTemplates';
 
 const Alert = ({
-  alert: { style, id, message, IconComponent, CloseComponent },
+  alert: { style, id, message, IconComponent, CloseComponent, theme },
   close,
 }) => (
   /**
    * TODO: enable passing some kind of alert theme, instead of
    *       only being able to override the styles.  Similar to react-alert
    */
-  <div
-    id={id}
-    css={{
-      margin: '10px',
-      width: '300px',
-      padding: '20px',
-      background: '#fff',
-      borderRadius: '5px',
-      border: '1px solid black',
-      position: 'relative',
-      transition: 'all 5s ease-in-out',
-    }}
-    style={{ ...style }}
-  >
+  <div id={id} css={theme === 'dark' ? dark : light} style={{ ...style }}>
     {IconComponent && (
       <div
         css={{

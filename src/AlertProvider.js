@@ -39,6 +39,7 @@ export default class AlertProvider extends React.Component {
     CloseComponent,
     AlertComponent,
     offset,
+    theme,
   }) => {
     const { alerts } = this.state;
     const key = Math.random();
@@ -59,6 +60,7 @@ export default class AlertProvider extends React.Component {
           IconComponent,
           CloseComponent,
           AlertComponent,
+          theme,
         },
       ],
       offset,
