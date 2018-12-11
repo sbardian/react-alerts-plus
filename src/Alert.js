@@ -2,53 +2,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { jsx } from '@emotion/core';
+import { Icon } from 'react-icons-kit';
+import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
 import { dark, light } from './AlertTemplates';
 
 const Alert = ({
-  alert: { style, id, message, IconComponent, CloseComponent, theme },
+  alert: { style, id, message, /* IconComponent, CloseComponent, */ theme },
   close,
 }) => (
-  /**
-   * TODO: enable passing some kind of alert theme, instead of
-   *       only being able to override the styles.  Similar to react-alert
-   */
   <div id={id} css={theme === 'dark' ? dark : light} style={{ ...style }}>
-    {IconComponent && (
-      <div
-        css={{
-          float: 'left',
-          paddingRight: '10px',
-        }}
-      >
-        <IconComponent />
-      </div>
-    )}
     {message}
-    {CloseComponent && (
-      <button
-        type="button"
-        onClick={() => close(id)}
-        css={{
-          float: 'right',
-          border: 'none',
-          background: 'none',
-          padding: 0,
-        }}
-      >
-        <CloseComponent />
-      </button>
-    )}
-    {!CloseComponent && (
-      <button
-        type="button"
-        onClick={() => close(id)}
-        css={{
-          float: 'right',
-        }}
-      >
-        Close
-      </button>
-    )}
+    <Icon
+      size={20}
+      icon={closeIcon}
+      style={{ float: 'right' }}
+      onClick={() => close(id)}
+    />
   </div>
 );
 

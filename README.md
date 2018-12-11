@@ -98,8 +98,6 @@ options: <Object> defining options for the alert:
                               'bottom left'
                               'bottom center'
                               'bottom right'
-  IconComponent:  <Component> defining the left icon on the standard alert
-  CloseComponent: <Component> defining the right close button of the alert
   AlertComponent: <Component> full custom alert component
                     default alert will be totally replaced by your custom alert
 
@@ -111,8 +109,6 @@ options: <Object> defining options for the alert:
         },
         position: 'top right',
         duration: 0,
-        IconComponent: () => <QuestionMarkIcon />,
-        CloseComponent: () => <CloseIcon />,
         AertComponent: () => <MyCustomAlert />
       }
 ```

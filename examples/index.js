@@ -5,18 +5,6 @@ import ReactDOM from 'react-dom';
 import { FaBeer } from 'react-icons/fa';
 import { AlertProvider, AlertWrapper } from '../src';
 
-class Question extends React.Component {
-  render() {
-    return <FaBeer />;
-  }
-}
-
-class CloseComponent extends React.Component {
-  render() {
-    return <button type="button">fucking close</button>;
-  }
-}
-
 class AlertComponent extends React.Component {
   render() {
     return <div key="meh">yo im a component</div>;
@@ -51,8 +39,6 @@ class App extends React.Component {
       },
       position: 'top right',
       duration: 0,
-      IconComponent: () => <Question />,
-      CloseComponent: () => <Question />,
     };
 
     const bottomRight = {
