@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { jsx } from '@emotion/core';
 
 const Alert = ({
-  alert: { style, offset, id, message, IconComponent, CloseComponent },
+  alert: { style, id, message, IconComponent, CloseComponent },
   close,
 }) => (
   /**
@@ -23,7 +23,7 @@ const Alert = ({
       position: 'relative',
       transition: 'all 5s ease-in-out',
     }}
-    style={{ ...style, margin: offset }}
+    style={{ ...style }}
   >
     {IconComponent && (
       <div
