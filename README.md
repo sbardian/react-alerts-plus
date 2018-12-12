@@ -2,7 +2,15 @@
 
 # react-alerts
 
-Alerts for react.
+Shows a very basic alert in the position and for the duration specified. You
+will most likely want to pass your own alert component to use with the library.
+
+This library was influenced by
+[schiehlls](https://github.com/schiehll/ 'schiehll')
+[react-alert](https://github.com/schiehll/react-alert 'react-alert') library. I
+liked what he had done but the project seems to no longer be supported, and i
+wanted something just a little different. Feel free to check out his library,
+maybe it will work better for your needs. Otherwise keep reading...
 
 Installation:
 
@@ -16,7 +24,7 @@ or
 npm install react-alerts
 ```
 
-Usage: Wrap your app in our provider:
+Usage: Wrap your app in the provider:
 
 ```
 import React from 'react';
