@@ -97,7 +97,7 @@ export default class AlertProvider extends React.Component {
                     }
                     const { AlertComponent } = a;
                     if (AlertComponent) {
-                      return <AlertComponent key={a.key} />;
+                      return <AlertComponent key={a.key} id={a.id} />;
                     }
                     return <Alert key={a.key} alert={a} close={this.close} />;
                   })}
