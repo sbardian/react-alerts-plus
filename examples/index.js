@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { AlertProvider, AlertWrapper } from '../src';
 
-const AlertComponent = ({ close, ...rest }) => {
+const AlertComponent = ({ close, style, ...rest }) => {
   console.log('rest = ', rest);
   return (
-    <div key="meh">
+    <div style={{ ...style }} key="meh">
       yo im a component
       <button type="button" onClick={close}>
         close
@@ -19,10 +19,12 @@ const AlertComponent = ({ close, ...rest }) => {
 
 AlertComponent.propTypes = {
   close: PropTypes.func,
+  border: PropTypes.string,
 };
 
 AlertComponent.defaultProps = {
   close: () => {},
+  border: null,
 };
 
 class App extends React.Component {
@@ -129,7 +131,15 @@ class App extends React.Component {
                   type="button"
                   onClick={() =>
                     show(bottomCenter, alertProps => (
-                      <AlertComponent {...alertProps} color="green" />
+                      <AlertComponent
+                        {...alertProps}
+                        color="green"
+                        style={{
+                          border: '1px solid red',
+                          padding: '20px',
+                          backgroundColor: 'cornflowerblue',
+                        }}
+                      />
                     ))
                   }
                 >
