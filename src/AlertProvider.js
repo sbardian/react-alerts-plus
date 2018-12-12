@@ -59,6 +59,7 @@ export default class AlertProvider extends React.Component {
   };
 
   close = id => {
+    console.log('close clicked');
     const { alerts: currentAlerts } = this.state;
     this.setState({
       alerts: currentAlerts.filter(alert => alert.id !== id),
@@ -97,8 +98,13 @@ export default class AlertProvider extends React.Component {
                     }
                     const { AlertComponent } = a;
                     if (AlertComponent) {
-                      const AlertComponentToRender = () => AlertComponent;
-                      return <AlertComponentToRender key={a.key} id={a.id} />;
+                      return (
+                        <AlertComponent
+                          close={() => this.close(a.id)}
+                          key={a.key}
+                          id={a.id}
+                        />
+                      );
                     }
                     return <Alert key={a.key} alert={a} close={this.close} />;
                   })}

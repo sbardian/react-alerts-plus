@@ -135,13 +135,14 @@ Options are passed as an object as the first argument to the show function.
 
 ### Custom Alert Component:
 
-Passing a custom alert component will cause some options to be ignored. If you
-want to take advantage of the close function you will need to pass it as a prop
-to your custom alert component and use it inside your component with your custom
-id.
+Passing a custom alert component will cause some options to be ignored. The
+close function will be added as a prop for you to consume in your custom alert
+component. **If you are going to use the close prop you will need to supply the
+custom ID with your options.** You can also pass any other props you might need
+in your custom alert component.
 
 ```
-const MyAlertComponent = ({ close }) => {
+const MyAlertComponent = ({ close, myColor, myHeight, ...rest }) => {
   return (
     <div key="randomKey">
       Hi alert here!
@@ -166,7 +167,7 @@ class MyApp extends React.Component {
           <div className="App">
             <AlertWrapper>
               {({ show, close }) => (
-                show(options, <MyAlertComponent close={() => close(options.id))} />);
+                show(options, () => <MyAlertComponent myColor="blue" myHeight={100} anotherProp={XXX} andAnother={XXX} />);
               )}
             </AlertWrapper>
           </div>
