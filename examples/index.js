@@ -2,7 +2,6 @@
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { FaBeer } from 'react-icons/fa';
 import { AlertProvider, AlertWrapper } from '../src';
 
 const AlertComponent = ({ close }) => {
