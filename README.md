@@ -98,8 +98,13 @@ options: <Object> defining options for the alert:
                               'bottom left'
                               'bottom center'
                               'bottom right'
+  theme:          <String> default alert theme colors
+                    options:  'light'
+                              'dark'
   AlertComponent: <Component> full custom alert component
-                    default alert will be totally replaced by your custom alert
+                    default alert will be totally replaced by your custom alert.
+                    Only offset, duration, and position are used when passing a
+                    custom AlertComponent.
 
   options example:
       {
