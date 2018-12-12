@@ -82,20 +82,22 @@ close(alertId): The close function will close the alert with the corresponding
 ID.
 
 ### Alert Options:
+
 Options are passed as an object as the first argument to the show function.
 
-| Option  | Type | Description  |
-| ------------- | ------------- | ------------- |
-| message | String / Number | message displayed in the alert |
-| id | String / Number | id for the alert |
-| style | Object | defining javascript styles |
-| offset | String | defining the offset of the alert from position |
-| duration | Number | time in milliseconds for the alert to be shown |
-| position | String | placement of the alert |
-| theme | String | default alert theme colors |
-| AlertComponent | Component | full custom alert component |
+| Option         | Type            | Description                                    |
+| -------------- | --------------- | ---------------------------------------------- |
+| message        | String / Number | message displayed in the alert                 |
+| id             | String / Number | id for the alert                               |
+| style          | Object          | defining javascript styles                     |
+| offset         | String          | defining the offset of the alert from position |
+| duration       | Number          | time in milliseconds for the alert to be shown |
+| position       | String          | placement of the alert                         |
+| theme          | String          | default alert theme colors                     |
+| AlertComponent | Component       | full custom alert component                    |
 
 ### Examples:
+
 ```
   message:        'Hi alert here!'
   id:             'my-alert'
@@ -111,7 +113,7 @@ Options are passed as an object as the first argument to the show function.
                   'bottom left'
                   'bottom center'
                   'bottom right'
-  theme:          'light' or 'dark'
+  theme:          'light' or 'dark' (light is default)
   AlertComponent: Default alert will be totally replaced by your custom alert.
                   Only offset, duration, id, and position are used when passing a
                   custom AlertComponent. See below for specifics about using
