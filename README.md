@@ -83,8 +83,17 @@ ID.
 
 ### Alert Options:
 
+Options are passed as an object as the first argument to the show function.
+
+|-------------------|----------------|---------------------------------------------------|
+| message | String/Number | message displayed in the alert | | id |
+String/Number | id for the alert | | style | Object | defining javascript styles
+| | offset | String | defining the offset of the alert from 'position' | |
+duration | Number | time in milliseconds for the alert to be shown | | position
+| String | placement of the alert | | theme | String | default alert theme
+colors | | AlertComponent | Component | full custom alert component |
+
 ```
-options: <Object> defining options for the alert:
   message:        <String|Number> message displayed in the alert
                     example: 'Hi alert here!'
   id:             <String|Number> id for the alert
@@ -96,7 +105,7 @@ options: <Object> defining options for the alert:
                     }
   offset:         <String> defining the offset of the alert from 'position'
                     example: '50px'
-  duration:       <Number> time in miliseconds for the alert to be shown
+  duration:       <Number> time in milliseconds for the alert to be shown
                     example: 2000
                     use 0 to never auto close the alert
   position:       <String> placement of the alert
