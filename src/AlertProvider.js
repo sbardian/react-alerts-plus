@@ -49,7 +49,7 @@ export default class AlertProvider extends React.Component {
           message: message || 'default message',
           position,
           style: style || {},
-          AlertComponent: () => AlertComponent,
+          AlertComponent,
           theme,
         },
       ],
@@ -97,7 +97,8 @@ export default class AlertProvider extends React.Component {
                     }
                     const { AlertComponent } = a;
                     if (AlertComponent) {
-                      return <AlertComponent key={a.key} id={a.id} />;
+                      const AlertComponentToRender = () => AlertComponent;
+                      return <AlertComponentToRender key={a.key} id={a.id} />;
                     }
                     return <Alert key={a.key} alert={a} close={this.close} />;
                   })}
