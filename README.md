@@ -85,6 +85,8 @@ ID.
 ### Alert Options:
 
 Options are passed as an object as the first argument to the show function.
+While z-index is not an option, you can pass a custom z-index in your styles and
+it will be applied. See below.
 
 | Option         | Type            | Description                                    |
 | -------------- | --------------- | ---------------------------------------------- |
@@ -126,6 +128,7 @@ Options are passed as an object as the first argument to the show function.
         style: {
           backgroundColor: 'cornflowerblue',
           borderRadius: 0,
+          zIndex: 1000,
         },
         offset: '50px',
         duration: 2000,
