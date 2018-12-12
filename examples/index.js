@@ -5,11 +5,16 @@ import ReactDOM from 'react-dom';
 import { FaBeer } from 'react-icons/fa';
 import { AlertProvider, AlertWrapper } from '../src';
 
-class AlertComponent extends React.Component {
-  render() {
-    return <div key="meh">yo im a component</div>;
-  }
-}
+const AlertComponent = ({ close }) => {
+  return (
+    <div key="meh">
+      yo im a component
+      <button type="button" onClick={() => close('my-alert')}>
+        close
+      </button>
+    </div>
+  );
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -61,8 +66,8 @@ class App extends React.Component {
     const bottomCenter = {
       ...topLeft,
       position: 'bottom center',
-      duration: 4000,
-      AlertComponent,
+      id: 'my-alert',
+      duration: 0,
     };
 
     const message = () => {
@@ -110,7 +115,12 @@ class App extends React.Component {
                 <button type="button" onClick={() => show(topCenter)}>
                   top center
                 </button>
-                <button type="button" onClick={() => show(bottomCenter)}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    show(bottomCenter, <AlertComponent close={close} />)
+                  }
+                >
                   bottom center
                 </button>
                 <button type="button" onClick={() => close('my-alert')}>
