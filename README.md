@@ -3,7 +3,8 @@
 # react-alerts
 
 Shows a very basic alert in the position and for the duration specified. You
-will most likely want to pass your own alert component to use with the library.
+will most likely want to pass your own custom alert compoonent to use with the
+library, see below.
 
 This library was influenced by
 [schiehlls](https://github.com/schiehll/ 'schiehll')
@@ -75,8 +76,8 @@ render() {
 
 The AlertWrapper returns a show and close function.
 
-show(options): The show function will display the alert using the options object
-passed. Returns the ID of the alert.
+show(options, AlertComponent): The show function will display the alert using
+the options object passed. **Returns the ID of the alert.**
 
 close(alertId): The close function will close the alert with the corresponding
 ID.
