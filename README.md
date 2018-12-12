@@ -3,7 +3,7 @@
 # react-alerts
 
 Shows a very basic alert in the position and for the duration specified. You
-will most likely want to pass your own custom alert compoonent to use with the
+will most likely want to pass your own custom alert component to use with the
 library, see below.
 
 This library was influenced by
