@@ -82,56 +82,51 @@ close(alertId): The close function will close the alert with the corresponding
 ID.
 
 ### Alert Options:
-
 Options are passed as an object as the first argument to the show function.
 
-|-------------------|----------------|---------------------------------------------------|
-| message | String/Number | message displayed in the alert | | id |
-String/Number | id for the alert | | style | Object | defining javascript styles
-| | offset | String | defining the offset of the alert from 'position' | |
-duration | Number | time in milliseconds for the alert to be shown | | position
-| String | placement of the alert | | theme | String | default alert theme
-colors | | AlertComponent | Component | full custom alert component |
+| Option  | Type | Description  |
+| ------------- | ------------- | ------------- |
+| message | String / Number | message displayed in the alert |
+| id | String / Number | id for the alert |
+| style | Object | defining javascript styles |
+| offset | String | defining the offset of the alert from position |
+| duration | Number | time in milliseconds for the alert to be shown |
+| position | String | placement of the alert |
+| theme | String | default alert theme colors |
+| AlertComponent | Component | full custom alert component |
 
+### Examples:
 ```
-  message:        <String|Number> message displayed in the alert
-                    example: 'Hi alert here!'
-  id:             <String|Number> id for the alert
-                    example: 'my-alert'
-  style:          <Object> defining javascript styles
-                    style: {
-                      backgroundColor: 'cornflowerblue',
-                      borderRadius: 0,
-                    }
-  offset:         <String> defining the offset of the alert from 'position'
-                    example: '50px'
-  duration:       <Number> time in milliseconds for the alert to be shown
-                    example: 2000
-                    use 0 to never auto close the alert
-  position:       <String> placement of the alert
-                    options:  'top left'
-                              'top center'
-                              'top right'
-                              'bottom left'
-                              'bottom center'
-                              'bottom right'
-  theme:          <String> default alert theme colors
-                    options:  'light'
-                              'dark'
-  AlertComponent: <Component> full custom alert component
-                    default alert will be totally replaced by your custom alert.
-                    Only offset, duration, id, and position are used when passing a
-                    custom AlertComponent. See below for specifics about using
-                    your own custom alert component.
+  message:        'Hi alert here!'
+  id:             'my-alert'
+  style:          style: {
+                    backgroundColor: 'cornflowerblue',
+                    borderRadius: 0,
+                  }
+  offset:         '50px'
+  duration:       2000 (use 0 to never auto close the alert)
+  position:       'top left'
+                  'top center'
+                  'top right'
+                  'bottom left'
+                  'bottom center'
+                  'bottom right'
+  theme:          'light' or 'dark'
+  AlertComponent: Default alert will be totally replaced by your custom alert.
+                  Only offset, duration, id, and position are used when passing a
+                  custom AlertComponent. See below for specifics about using
+                  your own custom alert component.
 
-  options example:
-      {
+  const optionsExample = {
+        message: 'Hi alert here!',
+        id: 'my-alert',
         style: {
           backgroundColor: 'cornflowerblue',
           borderRadius: 0,
         },
+        offset: '50px',
+        duration: 2000,
         position: 'top right',
-        duration: 0,
         theme: 'dark',
       }
 ```
