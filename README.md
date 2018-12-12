@@ -12,7 +12,7 @@ liked what he had done but the project seems to no longer be supported, and i
 wanted something just a little different. Feel free to check out his library,
 maybe it will work better for your needs. Otherwise keep reading...
 
-Installation:
+### Installation:
 
 ```
 yarn add react-alerts
@@ -24,7 +24,7 @@ or
 npm install react-alerts
 ```
 
-Usage: Wrap your app in the provider:
+### Usage: Wrap your app in the provider:
 
 ```
 import React from 'react';
@@ -41,7 +41,7 @@ class MyApp extends React.Component {
 }
 ```
 
-In your app where you would like to show alerts
+### In your app where you would like to show alerts
 
 ```
 import { AlertWrapper } from 'react-alerts';
@@ -75,13 +75,13 @@ render() {
 
 The AlertWrapper returns a show and close function.
 
-Show(options): The show function will display the alert using the options object
+show(options): The show function will display the alert using the options object
 passed. Returns the ID of the alert.
 
-Close(alertId): The close function will close the alert with the corresponding
+close(alertId): The close function will close the alert with the corresponding
 ID.
 
-Alert Options:
+### Alert Options:
 
 ```
 options: <Object> defining options for the alert:
@@ -111,8 +111,9 @@ options: <Object> defining options for the alert:
                               'dark'
   AlertComponent: <Component> full custom alert component
                     default alert will be totally replaced by your custom alert.
-                    Only offset, duration, and position are used when passing a
-                    custom AlertComponent.
+                    Only offset, duration, id, and position are used when passing a
+                    custom AlertComponent. See below for specifics about using
+                    your own custom alert component.
 
   options example:
       {
@@ -122,6 +123,48 @@ options: <Object> defining options for the alert:
         },
         position: 'top right',
         duration: 0,
-        AertComponent: () => <MyCustomAlert />
+        theme: 'dark',
       }
+```
+
+### Custom Alert Component:
+
+Passing a custom alert component will cause some options to be ignored. If you
+want to take advantage of the close function you will need to pass it as a prop
+to your custom alert component.
+
+```
+const MyAlertComponent = ({ close }) => {
+  return (
+    <div key="randomKey">
+      Hi alert here!
+      <button type="button" onClick={() => close('my-alert')}>
+        close
+      </button>
+    </div>
+  );
+};
+
+class MyApp extends React.Component {
+  render() {
+    const options = {
+        id: 'my-alert',
+        offset: '50px',
+        position: 'top right',
+        duration: 0,
+      }
+
+      return (
+        <AlertProvider>
+          <div className="App">
+            <AlertWrapper>
+              {({ show, close }) => (
+                show(options, <MyAlertComponent close={close} />);
+              )}
+            </AlertWrapper>
+          </div>
+        </AlertProvider>
+      )
+  }
+}
 ```
