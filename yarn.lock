@@ -4676,10 +4676,6 @@ react-icons-kit@^1.2.1:
     camel-case "^3.0.0"
     prop-types "^15.5.8"
 
-react-icons@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.2.2.tgz#7b1dc795004a119a35175e62ecef91e5c9c90962"
-
 react@^16.6.3:
   version "16.6.3"
   resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
