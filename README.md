@@ -131,14 +131,15 @@ options: <Object> defining options for the alert:
 
 Passing a custom alert component will cause some options to be ignored. If you
 want to take advantage of the close function you will need to pass it as a prop
-to your custom alert component.
+to your custom alert component and use it inside your component with your custom
+id.
 
 ```
 const MyAlertComponent = ({ close }) => {
   return (
     <div key="randomKey">
       Hi alert here!
-      <button type="button" onClick={() => close('my-alert')}>
+      <button type="button" onClick={close}>
         close
       </button>
     </div>
@@ -159,7 +160,7 @@ class MyApp extends React.Component {
           <div className="App">
             <AlertWrapper>
               {({ show, close }) => (
-                show(options, <MyAlertComponent close={close} />);
+                show(options, <MyAlertComponent close={() => close(options.id))} />);
               )}
             </AlertWrapper>
           </div>

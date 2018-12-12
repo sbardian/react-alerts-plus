@@ -8,7 +8,7 @@ const AlertComponent = ({ close }) => {
   return (
     <div key="meh">
       yo im a component
-      <button type="button" onClick={() => close('my-alert')}>
+      <button type="button" onClick={close}>
         close
       </button>
     </div>
@@ -117,7 +117,10 @@ class App extends React.Component {
                 <button
                   type="button"
                   onClick={() =>
-                    show(bottomCenter, <AlertComponent close={close} />)
+                    show(
+                      bottomCenter,
+                      <AlertComponent close={() => close(bottomCenter.id)} />,
+                    )
                   }
                 >
                   bottom center
