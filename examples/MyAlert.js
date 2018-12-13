@@ -15,12 +15,13 @@ export const MyAlert = ({ close /* ...props */ }) => {
         display: grid;
         grid-gap: 10px;
         grid-template-rows: 40px 1fr;
-        border: 1px solid black;
+        border: 1px solid lavenderblush;
         justify-content: center;
         padding: 20px;
         width: 400px;
-        margin: 10px;
+        margin: 15px;
         background-color: cadetblue;
+        box-shadow: 1px 1px 8px 1px #666;
       `}
     >
       <div
