@@ -82,12 +82,17 @@ export default class AlertProvider extends React.Component {
 
     const orderedAlerts = groupBy(alerts, 'position');
 
-    /**
-     * TODO: reverse sort order of any top postion alerts.  New alerts should
-     *       come in on top, pushing older alerts down the page.  Bottom
-     *       position alerts are current correct and will not need their sort
-     *       order changed.
-     */
+    let sortedAlerts = {};
+    Object.keys(orderedAlerts).map(position => {
+      sortedAlerts =
+        position.indexOf('top') > -1
+          ? {
+              ...sortedAlerts,
+              [position]: orderedAlerts[position].reverse(),
+            }
+          : { ...sortedAlerts, [position]: orderedAlerts[position] };
+      return null;
+    });
 
     return (
       <AlertContext.Provider value={alert}>
@@ -95,15 +100,17 @@ export default class AlertProvider extends React.Component {
         {root &&
           createPortal(
             <Fragment>
-              {Object.keys(orderedAlerts).map(position => (
+              {Object.keys(sortedAlerts).map(position => (
                 <AlertContainer
                   key={position}
                   position={getPosition(position, offset)}
                 >
-                  {orderedAlerts[position].map(a => {
+                  {sortedAlerts[position].map(a => {
                     /**
                      * TODO: Try to find another way to expire alerts when
                      *       their duration is up.
+                     *
+                     * TODO: Add transitions, because react-alert has them.
                      */
                     if (a.duration !== 0) {
                       setTimeout(() => this.close(a.id), a.duration);

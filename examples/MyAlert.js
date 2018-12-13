@@ -7,7 +7,7 @@ import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
 
 export const MyAlert = ({ close, title, message, imageUri, ...props }) => {
-  console.log('rest = ', props);
+  // console.log('rest = ', props);
   return (
     <div
       key="someRandomKey"

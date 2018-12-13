@@ -21,7 +21,7 @@ class App extends React.Component {
       style: {},
       message: alertMessage,
       offset,
-      duration: 2000,
+      duration: 0,
       position: 'top left',
     };
 
@@ -48,13 +48,13 @@ class App extends React.Component {
 
     const bottomLeft = {
       ...topLeft,
-      message: 'Your request was successful.',
-      style: {
-        borderColor: 'green',
-        borderRadius: 0,
-      },
-      duration: 0,
-      id: 'my-alert',
+      // message: 'Your request was successful.',
+      // style: {
+      //   borderColor: 'green',
+      //   borderRadius: 0,
+      // },
+      // duration: 0,
+      // id: 'my-alert',
       position: 'bottom left',
     };
 
