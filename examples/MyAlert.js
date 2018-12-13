@@ -6,8 +6,8 @@ import { jsx, css } from '@emotion/core';
 import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
 
-export const MyAlert = ({ close /* ...props */ }) => {
-  // console.log('rest = ', props);
+export const MyAlert = ({ close, title, message, imageUri, ...props }) => {
+  console.log('rest = ', props);
   return (
     <div
       key="someRandomKey"
@@ -37,7 +37,7 @@ export const MyAlert = ({ close /* ...props */ }) => {
             color: white;
           `}
         >
-          Lorem ipsum
+          {title}
         </header>
         <div>
           <Icon size={20} icon={closeIcon} onClick={close} />
@@ -46,25 +46,17 @@ export const MyAlert = ({ close /* ...props */ }) => {
       <div
         css={css`
           display: grid;
-          grid-gap: 10px;
+          grid-gap: 15px;
           grid-template-columns: 200px 1fr;
         `}
       >
-        <img
-          height="200"
-          width="200"
-          src="https://source.unsplash.com/random/200x200"
-          alt="pic"
-        />
+        <img height="200" width="200" src={imageUri} alt="pic" />
         <article
           css={css`
             color: #141414;
           `}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit fugit
-          perferendis, beatae qui voluptatem soluta quos optio expedita nemo
-          culpa amet! Recusandae a natus fugiat est vel nulla quos fuga. Lorem
-          ipsum, dolor sit amet consectetur adipisicing elit.
+          {message}
         </article>
       </div>
     </div>
@@ -73,10 +65,16 @@ export const MyAlert = ({ close /* ...props */ }) => {
 
 MyAlert.propTypes = {
   close: PropTypes.func,
+  title: PropTypes.string,
+  message: PropTypes.string,
+  imageUri: PropTypes.string,
 };
 
 MyAlert.defaultProps = {
   close: () => {},
+  title: 'Default Title',
+  message: 'Default Message',
+  imageUri: '',
 };
 
 export default MyAlert;

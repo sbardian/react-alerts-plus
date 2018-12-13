@@ -77,6 +77,14 @@ class App extends React.Component {
       });
     };
 
+    const customMessage =
+      'Lorem ipsum dolor sit amet consectetur elit. ' +
+      'Velit fugit perferendis, beatae qui voluptatem soluta quos optio ' +
+      'expedita nemo culpa amet! Recusandae a natus fugiat est vel nulla ' +
+      'quos fuga. Lorem ipsum, dolor sit amet consectetur adipisicing elit.';
+
+    const imageUri = 'https://source.unsplash.com/random/200x200';
+
     return (
       <AlertProvider>
         <div className="App">
@@ -112,11 +120,36 @@ class App extends React.Component {
                   onClick={() =>
                     show(
                       { ...bottomCenter, id: Math.random().toString() },
-                      props => <MyAlert {...props} />,
+                      props => (
+                        <MyAlert
+                          {...props}
+                          title="Lorem ipsum"
+                          message={customMessage}
+                          imageUri={imageUri}
+                        />
+                      ),
                     )
                   }
                 >
-                  bottom center
+                  bottom center Custom 1
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    show(
+                      { ...bottomCenter, id: Math.random().toString() },
+                      props => (
+                        <MyAlert
+                          {...props}
+                          title="Another Custom Alert"
+                          message={customMessage}
+                          imageUri={imageUri}
+                        />
+                      ),
+                    )
+                  }
+                >
+                  bottom center Custom 2
                 </button>
                 {`  |  `}
                 <button type="button" onClick={() => close('my-alert')}>
