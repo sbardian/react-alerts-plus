@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { AlertProvider, AlertWrapper } from '../src';
 
-const AlertComponent = ({ close, style, ...rest }) => {
-  console.log('rest = ', rest);
+const AlertComponent = ({ close, style /* ...props */ }) => {
+  // console.log('rest = ', props);
   return (
-    <div style={{ ...style }} key="meh">
+    <div style={{ ...style }} key="someRandomKey">
       yo im a component
       <button type="button" onClick={close}>
         close
@@ -19,12 +19,12 @@ const AlertComponent = ({ close, style, ...rest }) => {
 
 AlertComponent.propTypes = {
   close: PropTypes.func,
-  border: PropTypes.string,
+  style: PropTypes.shape(),
 };
 
 AlertComponent.defaultProps = {
   close: () => {},
-  border: null,
+  style: {},
 };
 
 class App extends React.Component {
@@ -62,7 +62,9 @@ class App extends React.Component {
     const bottomRight = {
       ...topLeft,
       message:
-        'There was an error processing your request. There was an error processing your request. There was an error processing your request.',
+        'There was an error processing your request. ' +
+        'There was an error processing your request. ' +
+        'There was an error processing your request. ',
       position: 'bottom right',
       id: 'my-bottom-right-alert',
     };
@@ -130,17 +132,21 @@ class App extends React.Component {
                 <button
                   type="button"
                   onClick={() =>
-                    show(bottomCenter, alertProps => (
-                      <AlertComponent
-                        {...alertProps}
-                        color="green"
-                        style={{
-                          border: '1px solid red',
-                          padding: '20px',
-                          backgroundColor: 'cornflowerblue',
-                        }}
-                      />
-                    ))
+                    show(
+                      { ...bottomCenter, id: Math.random().toString() },
+                      props => (
+                        <AlertComponent
+                          {...props}
+                          color="green"
+                          style={{
+                            margin: '10px',
+                            border: '1px solid red',
+                            padding: '20px',
+                            backgroundColor: 'cornflowerblue',
+                          }}
+                        />
+                      ),
+                    )
                   }
                 >
                   bottom center
