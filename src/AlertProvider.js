@@ -76,7 +76,6 @@ export default class AlertProvider extends React.Component {
     const { alerts, root, offset } = this.state;
 
     const alert = {
-      ...this.state,
       show: this.show,
       close: this.close,
     };
