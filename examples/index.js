@@ -1,31 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable react/no-multi-comp */
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { AlertProvider, AlertWrapper } from '../src';
-
-const AlertComponent = ({ close, style /* ...props */ }) => {
-  // console.log('rest = ', props);
-  return (
-    <div style={{ ...style }} key="someRandomKey">
-      yo im a component
-      <button type="button" onClick={close}>
-        close
-      </button>
-    </div>
-  );
-};
-
-AlertComponent.propTypes = {
-  close: PropTypes.func,
-  style: PropTypes.shape(),
-};
-
-AlertComponent.defaultProps = {
-  close: () => {},
-  style: {},
-};
+import { MyAlert } from './MyAlert';
 
 class App extends React.Component {
   constructor(props) {
@@ -51,7 +29,6 @@ class App extends React.Component {
       ...topLeft,
       message: 'There was an error processing your request.',
       style: {
-        // backgroundColor: 'cornflowerblue',
         borderColor: 'red',
         borderRadius: 0,
       },
@@ -77,6 +54,7 @@ class App extends React.Component {
         borderRadius: 0,
       },
       duration: 0,
+      id: 'my-alert',
       position: 'bottom left',
     };
 
@@ -134,25 +112,15 @@ class App extends React.Component {
                   onClick={() =>
                     show(
                       { ...bottomCenter, id: Math.random().toString() },
-                      props => (
-                        <AlertComponent
-                          {...props}
-                          color="green"
-                          style={{
-                            margin: '10px',
-                            border: '1px solid red',
-                            padding: '20px',
-                            backgroundColor: 'cornflowerblue',
-                          }}
-                        />
-                      ),
+                      props => <MyAlert {...props} />,
                     )
                   }
                 >
                   bottom center
                 </button>
+                {`  |  `}
                 <button type="button" onClick={() => close('my-alert')}>
-                  close
+                  close bottom left
                 </button>
               </div>
             )}
