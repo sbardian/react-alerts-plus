@@ -28,7 +28,15 @@ export default class AlertProvider extends React.Component {
   }
 
   show = (
-    { message, style, duration, id, position, offset, theme },
+    {
+      message = 'Default alert message',
+      style = {},
+      duration = 0,
+      id,
+      position = 'top left',
+      offset = '0px',
+      theme = 'light',
+    },
     AlertComponent,
   ) => {
     const { alerts } = this.state;
@@ -41,12 +49,12 @@ export default class AlertProvider extends React.Component {
       alerts: [
         ...alerts,
         {
-          duration: duration || 0,
+          duration,
           id: id || randomId,
           key,
-          message: message || 'default message',
+          message,
           position,
-          style: style || {},
+          style,
           AlertComponent,
           theme,
         },
