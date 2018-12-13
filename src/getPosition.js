@@ -1,48 +1,53 @@
-const getPosition = (position, offset, zIndex = 100) => {
+const getPosition = (position, offset) => {
+  const POSITION = 'fixed';
+  const ZINDEX = 100;
+  const TRANSFORM = 'translate(-50%, 0%)';
+  const CENTER_PERCENT = `50%`;
+
   switch (position) {
     case 'top left':
       return {
-        position: 'fixed',
+        position: POSITION,
         top: `${offset}`,
         left: `${offset}`,
-        zIndex,
+        zIndex: ZINDEX,
       };
     case 'top right':
       return {
-        position: 'fixed',
+        position: POSITION,
         top: `${offset}`,
         right: `${offset}`,
-        zIndex,
+        zIndex: ZINDEX,
       };
     case 'bottom left':
       return {
-        position: 'fixed',
+        position: POSITION,
         bottom: `${offset}`,
         left: `${offset}`,
-        zIndex,
+        zIndex: ZINDEX,
       };
     case 'bottom right':
       return {
-        position: 'fixed',
+        position: POSITION,
         bottom: `${offset}`,
         right: `${offset}`,
-        zIndex,
+        zIndex: ZINDEX,
       };
     case 'top center':
       return {
-        position: 'fixed',
+        position: POSITION,
         top: `${offset}`,
-        left: `50%`,
-        transform: 'translate(-50%, 0%)',
-        zIndex,
+        left: CENTER_PERCENT,
+        transform: TRANSFORM,
+        zIndex: ZINDEX,
       };
     case 'bottom center':
       return {
-        position: 'fixed',
+        position: POSITION,
         bottom: `${offset}`,
-        left: `50%`,
-        transform: 'translate(-50%, 0%)',
-        zIndex,
+        left: CENTER_PERCENT,
+        transform: TRANSFORM,
+        zIndex: ZINDEX,
       };
     default:
       return null;
