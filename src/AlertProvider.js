@@ -82,6 +82,13 @@ export default class AlertProvider extends React.Component {
 
     const orderedAlerts = groupBy(alerts, 'position');
 
+    /**
+     * TODO: reverse sort order of any top postion alerts.  New alerts should
+     *       come in on top, pushing older alerts down the page.  Bottom
+     *       position alerts are current correct and will not need their sort
+     *       order changed.
+     */
+
     return (
       <AlertContext.Provider value={alert}>
         {children}
@@ -95,7 +102,8 @@ export default class AlertProvider extends React.Component {
                 >
                   {orderedAlerts[position].map(a => {
                     /**
-                     * TODO: use a different way / timer method to remove alerts.
+                     * TODO: Try to find another way to expire alerts when
+                     *       their duration is up.
                      */
                     if (a.duration !== 0) {
                       setTimeout(() => this.close(a.id), a.duration);
