@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import groupBy from 'lodash/groupBy';
 import { createPortal } from 'react-dom';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import AlertContext from './AlertContext';
-import getPosition from './getPosition';
+import getPositionStyles from './getPositionStyles';
 import AlertContainer from './AlertContainer';
 import Alert from './Alert';
 
@@ -27,9 +26,33 @@ export default class AlertProvider extends React.Component {
   };
 
   state = {
-    alerts: [],
-    offset: '10px',
     root: null,
+    alertContainers: {
+      topLeft: {
+        offset: '10px',
+        alerts: [],
+      },
+      topCenter: {
+        offset: '10px',
+        alerts: [],
+      },
+      topRight: {
+        offset: '10px',
+        alerts: [],
+      },
+      bottomLeft: {
+        offset: '10px',
+        alerts: [],
+      },
+      bottomCenter: {
+        offset: '10px',
+        alerts: [],
+      },
+      bottomRight: {
+        offset: '10px',
+        alerts: [],
+      },
+    },
   };
 
   componentDidMount() {
@@ -38,6 +61,25 @@ export default class AlertProvider extends React.Component {
     this.setState({ root });
   }
 
+  getPosition = position => {
+    switch (position) {
+      case 'top left':
+        return 'topLeft';
+      case 'top center':
+        return 'topCenter';
+      case 'top right':
+        return 'topRight';
+      case 'bottom left':
+        return 'bottomLeft';
+      case 'bottom center':
+        return 'bottomCenter';
+      case 'bottom right':
+        return 'bottomRight';
+      default:
+        throw new Error(`Invalid position prop ${position}`);
+    }
+  };
+
   show = (
     {
       message = 'Default alert message',
@@ -45,65 +87,94 @@ export default class AlertProvider extends React.Component {
       duration = 0,
       id,
       position = 'top left',
-      offset = '0px',
+      offset = '10px',
       theme = 'light',
     },
     AlertComponent,
   ) => {
-    const { alerts } = this.state;
     const key = Math.random();
     const randomId = Math.random()
       .toString(36)
       .substring(7);
 
-    this.setState({
-      alerts: [
-        ...alerts,
-        {
-          duration,
-          id: id || randomId,
-          key,
-          message,
-          position,
-          style,
-          AlertComponent,
-          theme,
+    const alertPosition = this.getPosition(position);
+
+    this.setState(state => {
+      if (alertPosition.startsWith('top')) {
+        return {
+          ...state,
+          alertContainers: {
+            ...state.alertContainers,
+            [alertPosition]: {
+              offset,
+              alerts: [
+                {
+                  duration,
+                  id: id || randomId,
+                  key,
+                  message,
+                  position,
+                  style,
+                  AlertComponent,
+                  theme,
+                },
+                ...state.alertContainers[alertPosition].alerts,
+              ],
+            },
+          },
+        };
+      }
+      return {
+        ...state,
+        alertContainers: {
+          ...state.alertContainers,
+          [alertPosition]: {
+            offset,
+            alerts: [
+              ...state.alertContainers[alertPosition].alerts,
+              {
+                duration,
+                id: id || randomId,
+                key,
+                message,
+                position,
+                style,
+                AlertComponent,
+                theme,
+              },
+            ],
+          },
         },
-      ],
-      offset,
+      };
     });
+
     return id || randomId;
   };
 
-  close = id => {
-    const { alerts: currentAlerts } = this.state;
-    this.setState({
-      alerts: currentAlerts.filter(alert => alert.id !== id),
-    });
+  close = removeId => {
+    this.setState(state => ({
+      ...state,
+      alertContainers: Object.entries(state.alertContainers).reduce(
+        (acc, [containerName, containerValue]) => ({
+          ...acc,
+          [containerName]: {
+            ...containerValue,
+            alerts: containerValue.alerts.filter(({ id }) => id !== removeId),
+          },
+        }),
+        {},
+      ),
+    }));
   };
 
   render() {
     const { children } = this.props;
-    const { alerts, root, offset } = this.state;
+    const { alertContainers, root } = this.state;
 
     const alert = {
       show: this.show,
       close: this.close,
     };
-
-    const orderedAlerts = groupBy(alerts, 'position');
-
-    let sortedAlerts = {};
-    Object.keys(orderedAlerts).map(position => {
-      sortedAlerts =
-        position.indexOf('top') > -1
-          ? {
-              ...sortedAlerts,
-              [position]: orderedAlerts[position].reverse(),
-            }
-          : { ...sortedAlerts, [position]: orderedAlerts[position] };
-      return null;
-    });
 
     return (
       <AlertContext.Provider value={alert}>
@@ -111,13 +182,16 @@ export default class AlertProvider extends React.Component {
         {root &&
           createPortal(
             <Fragment>
-              {Object.keys(sortedAlerts).map(position => (
+              {Object.keys(alertContainers).map(position => (
                 <AlertContainer
                   key={position}
-                  position={getPosition(position, offset)}
+                  style={getPositionStyles(
+                    position,
+                    alertContainers[position].offset,
+                  )}
                 >
                   <TransitionGroup>
-                    {sortedAlerts[position].map(a => {
+                    {alertContainers[position].alerts.map(a => {
                       /**
                        * TODO: Try to find another way to expire alerts when
                        *       their duration is up.

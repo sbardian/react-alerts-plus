@@ -66,6 +66,7 @@ class App extends React.Component {
 
     const bottomCenter = {
       ...topLeft,
+      offset: '300px',
       position: 'bottom center',
       id: 'my-bottom-center-alert',
       duration: 0,

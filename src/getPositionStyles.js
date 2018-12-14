@@ -1,39 +1,39 @@
-const getPosition = (position, offset) => {
+const getPositionStyles = (position, offset) => {
   const POSITION = 'fixed';
   const ZINDEX = 100;
   const TRANSFORM = 'translate(-50%, 0%)';
   const CENTER_PERCENT = `50%`;
 
   switch (position) {
-    case 'top left':
+    case 'topLeft':
       return {
         position: POSITION,
         top: `${offset}`,
         left: `${offset}`,
         zIndex: ZINDEX,
       };
-    case 'top right':
+    case 'topRight':
       return {
         position: POSITION,
         top: `${offset}`,
         right: `${offset}`,
         zIndex: ZINDEX,
       };
-    case 'bottom left':
+    case 'bottomLeft':
       return {
         position: POSITION,
         bottom: `${offset}`,
         left: `${offset}`,
         zIndex: ZINDEX,
       };
-    case 'bottom right':
+    case 'bottomRight':
       return {
         position: POSITION,
         bottom: `${offset}`,
         right: `${offset}`,
         zIndex: ZINDEX,
       };
-    case 'top center':
+    case 'topCenter':
       return {
         position: POSITION,
         top: `${offset}`,
@@ -41,7 +41,7 @@ const getPosition = (position, offset) => {
         transform: TRANSFORM,
         zIndex: ZINDEX,
       };
-    case 'bottom center':
+    case 'bottomCenter':
       return {
         position: POSITION,
         bottom: `${offset}`,
@@ -54,4 +54,4 @@ const getPosition = (position, offset) => {
   }
 };
 
-export default getPosition;
+export default getPositionStyles;
