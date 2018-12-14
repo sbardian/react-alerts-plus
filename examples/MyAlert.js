@@ -6,7 +6,14 @@ import { jsx, css } from '@emotion/core';
 import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
 
-export const MyAlert = ({ close, title, message, imageUri, ...props }) => {
+export const MyAlert = ({
+  close,
+  title,
+  message,
+  imageUri,
+  transitionStyle,
+  ...props
+}) => {
   // console.log('rest = ', props);
   return (
     <div
@@ -23,6 +30,9 @@ export const MyAlert = ({ close, title, message, imageUri, ...props }) => {
         background-color: cadetblue;
         box-shadow: 1px 1px 8px 1px #666;
       `}
+      style={{
+        ...transitionStyle,
+      }}
     >
       <div
         css={css`

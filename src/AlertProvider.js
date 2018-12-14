@@ -2,10 +2,21 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import groupBy from 'lodash/groupBy';
 import { createPortal } from 'react-dom';
+import { TransitionGroup, Transition } from 'react-transition-group';
 import AlertContext from './AlertContext';
 import getPosition from './getPosition';
 import AlertContainer from './AlertContainer';
 import Alert from './Alert';
+
+const defaultStyle = {
+  transition: 'opacity 500ms ease-in-out',
+  opacity: 0,
+};
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 },
+};
 
 export default class AlertProvider extends React.Component {
   static propTypes = {
@@ -105,28 +116,50 @@ export default class AlertProvider extends React.Component {
                   key={position}
                   position={getPosition(position, offset)}
                 >
-                  {sortedAlerts[position].map(a => {
-                    /**
-                     * TODO: Try to find another way to expire alerts when
-                     *       their duration is up.
-                     *
-                     * TODO: Add transitions, because react-alert has them.
-                     */
-                    if (a.duration !== 0) {
-                      setTimeout(() => this.close(a.id), a.duration);
-                    }
-                    const { AlertComponent } = a;
-                    if (AlertComponent) {
+                  <TransitionGroup>
+                    {sortedAlerts[position].map(a => {
+                      /**
+                       * TODO: Try to find another way to expire alerts when
+                       *       their duration is up.
+                       */
+                      if (a.duration !== 0) {
+                        setTimeout(() => this.close(a.id), a.duration);
+                      }
+                      const { AlertComponent } = a;
+                      if (AlertComponent) {
+                        return (
+                          <Transition key={a.key} timeout={0} appear>
+                            {state => (
+                              <AlertComponent
+                                close={() => this.close(a.id)}
+                                key={a.key}
+                                id={a.id}
+                                transitionStyle={{
+                                  ...defaultStyle,
+                                  ...transitionStyles[state],
+                                }}
+                              />
+                            )}
+                          </Transition>
+                        );
+                      }
                       return (
-                        <AlertComponent
-                          close={() => this.close(a.id)}
-                          key={a.key}
-                          id={a.id}
-                        />
+                        <Transition key={a.key} timeout={0} appear>
+                          {state => (
+                            <Alert
+                              key={a.key}
+                              alert={a}
+                              close={this.close}
+                              transitionStyle={{
+                                ...defaultStyle,
+                                ...transitionStyles[state],
+                              }}
+                            />
+                          )}
+                        </Transition>
                       );
-                    }
-                    return <Alert key={a.key} alert={a} close={this.close} />;
-                  })}
+                    })}
+                  </TransitionGroup>
                 </AlertContainer>
               ))}
             </Fragment>,

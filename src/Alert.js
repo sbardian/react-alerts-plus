@@ -4,10 +4,17 @@ import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
 import { dark, light } from './AlertTemplates';
 
-const Alert = ({ alert: { style, id, message, theme }, close }) => {
+const Alert = ({
+  alert: { style, id, message, theme },
+  close,
+  transitionStyle,
+}) => {
   const applyTheme = theme === 'dark' ? dark : light;
   return (
-    <div id={id} style={{ ...applyTheme, display: 'flex', ...style }}>
+    <div
+      id={id}
+      style={{ ...applyTheme, display: 'flex', ...style, ...transitionStyle }}
+    >
       <span style={{ marginRight: '20px' }}>{message}</span>
       <Icon
         size={20}
