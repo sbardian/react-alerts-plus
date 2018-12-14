@@ -182,32 +182,49 @@ export default class AlertProvider extends React.Component {
         {root &&
           createPortal(
             <Fragment>
-              {Object.keys(alertContainers).map(position => (
-                <AlertContainer
-                  key={position}
-                  style={getPositionStyles(
-                    position,
-                    alertContainers[position].offset,
-                  )}
-                >
-                  <TransitionGroup>
-                    {alertContainers[position].alerts.map(a => {
-                      /**
-                       * TODO: Try to find another way to expire alerts when
-                       *       their duration is up.
-                       */
-                      if (a.duration !== 0) {
-                        setTimeout(() => this.close(a.id), a.duration);
-                      }
-                      const { AlertComponent } = a;
-                      if (AlertComponent) {
+              {Object.keys(alertContainers).map(position =>
+                alertContainers[position].alerts.length ? (
+                  <AlertContainer
+                    key={position}
+                    style={getPositionStyles(
+                      position,
+                      alertContainers[position].offset,
+                    )}
+                  >
+                    <TransitionGroup>
+                      {alertContainers[position].alerts.map(a => {
+                        /**
+                         * TODO: Try to find another way to expire alerts when
+                         *       their duration is up.
+                         */
+                        if (a.duration !== 0) {
+                          setTimeout(() => this.close(a.id), a.duration);
+                        }
+                        const { AlertComponent } = a;
+                        if (AlertComponent) {
+                          return (
+                            <Transition key={a.key} timeout={0} appear>
+                              {state => (
+                                <AlertComponent
+                                  close={() => this.close(a.id)}
+                                  key={a.key}
+                                  id={a.id}
+                                  transitionStyle={{
+                                    ...defaultStyle,
+                                    ...transitionStyles[state],
+                                  }}
+                                />
+                              )}
+                            </Transition>
+                          );
+                        }
                         return (
                           <Transition key={a.key} timeout={0} appear>
                             {state => (
-                              <AlertComponent
-                                close={() => this.close(a.id)}
+                              <Alert
                                 key={a.key}
-                                id={a.id}
+                                alert={a}
+                                close={this.close}
                                 transitionStyle={{
                                   ...defaultStyle,
                                   ...transitionStyles[state],
@@ -216,26 +233,11 @@ export default class AlertProvider extends React.Component {
                             )}
                           </Transition>
                         );
-                      }
-                      return (
-                        <Transition key={a.key} timeout={0} appear>
-                          {state => (
-                            <Alert
-                              key={a.key}
-                              alert={a}
-                              close={this.close}
-                              transitionStyle={{
-                                ...defaultStyle,
-                                ...transitionStyles[state],
-                              }}
-                            />
-                          )}
-                        </Transition>
-                      );
-                    })}
-                  </TransitionGroup>
-                </AlertContainer>
-              ))}
+                      })}
+                    </TransitionGroup>
+                  </AlertContainer>
+                ) : null,
+              )}
             </Fragment>,
             root,
           )}
