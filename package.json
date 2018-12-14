@@ -24,7 +24,8 @@
   "dependencies": {
     "lodash": "4.17.11",
     "prop-types": "^15.6.2",
-    "react-icons-kit": "^1.2.1"
+    "react-icons-kit": "^1.2.1",
+    "react-transition-group": "^2.5.1"
   },
   "devDependencies": {
     "@babel/cli": "7.2.0",
