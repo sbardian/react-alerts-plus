@@ -34,6 +34,11 @@ Alert.propTypes = {
     theme: PropTypes.string,
   }).isRequired,
   close: PropTypes.func.isRequired,
+  transitionStyle: PropTypes.shape(),
+};
+
+Alert.defaultProps = {
+  transitionStyle: {},
 };
 
 export default Alert;
