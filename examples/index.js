@@ -43,6 +43,7 @@ class App extends React.Component {
         'There was an error processing your request. ' +
         'There was an error processing your request. ',
       position: 'bottom right',
+      duration: 2000,
       id: 'my-bottom-right-alert',
     };
 
@@ -66,7 +67,7 @@ class App extends React.Component {
 
     const bottomCenter = {
       ...topLeft,
-      offset: '300px',
+      offset: '20px',
       position: 'bottom center',
       id: 'my-bottom-center-alert',
       duration: 0,
