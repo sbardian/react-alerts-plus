@@ -196,6 +196,10 @@ export default class AlertProvider extends React.Component {
                         /**
                          * TODO: Try to find another way to expire alerts when
                          *       their duration is up.
+                         *
+                         * TODO: Remove transition from custom alert component?
+                         *       allowing users to pass their component wrapped
+                         *       in their own custom Transition effect?
                          */
                         if (a.duration !== 0) {
                           setTimeout(() => this.close(a.id), a.duration);
