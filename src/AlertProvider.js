@@ -8,7 +8,7 @@ import AlertContainer from './AlertContainer';
 import Alert from './Alert';
 
 const defaultStyle = {
-  transition: 'opacity 500ms ease-in-out',
+  transition: 'opacity 1000ms ease-in-out',
   opacity: 0,
 };
 
