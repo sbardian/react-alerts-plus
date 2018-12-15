@@ -89,6 +89,7 @@ export default class AlertProvider extends React.Component {
       position = 'top left',
       offset = '10px',
       theme = 'light',
+      progressBarColor = 'cornflowerblue',
     },
     AlertComponent,
   ) => {
@@ -117,6 +118,7 @@ export default class AlertProvider extends React.Component {
                   style,
                   AlertComponent,
                   theme,
+                  progressBarColor,
                 },
                 ...state.alertContainers[alertPosition].alerts,
               ],
@@ -141,6 +143,7 @@ export default class AlertProvider extends React.Component {
                 style,
                 AlertComponent,
                 theme,
+                progressBarColor,
               },
             ],
           },
@@ -217,6 +220,8 @@ export default class AlertProvider extends React.Component {
                                     ...defaultStyle,
                                     ...transitionStyles[state],
                                   }}
+                                  alertTimeout={a.duration}
+                                  progressBarColor={a.progressBarColor}
                                 />
                               )}
                             </Transition>
@@ -233,6 +238,8 @@ export default class AlertProvider extends React.Component {
                                   ...defaultStyle,
                                   ...transitionStyles[state],
                                 }}
+                                alertTimeout={a.duration}
+                                progressBarColor={a.progressBarColor}
                               />
                             )}
                           </Transition>

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { jsx, css } from '@emotion/core';
 import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
+import { TransitionGroup, Transition } from 'react-transition-group';
 
 export const MyAlert = ({
   close,
@@ -12,16 +13,27 @@ export const MyAlert = ({
   message,
   imageUri,
   transitionStyle,
+  progressBarColor,
+  alertTimeout,
   ...props
 }) => {
   // console.log('rest = ', props);
+  const progressStyle = {
+    transition: `width ${alertTimeout}ms ease-in-out`,
+    width: '0px',
+  };
+
+  const progressTransitionStyles = {
+    entering: { width: '0px' },
+    entered: { width: '100%' },
+  };
   return (
     <div
       key="someRandomKey"
       css={css`
         display: grid;
         grid-gap: 10px;
-        grid-template-rows: 40px 1fr;
+        grid-template-rows: 40px 1fr 10px;
         border: 1px solid lavenderblush;
         justify-content: center;
         padding: 20px;
@@ -69,6 +81,25 @@ export const MyAlert = ({
           {message}
         </article>
       </div>
+      {alertTimeout === 0 ? null : (
+        <TransitionGroup>
+          <Transition timeout={0} appear>
+            {state => (
+              <div
+                style={{
+                  height: '10px',
+                  backgroundColor: `${progressBarColor}`,
+                  // position: 'absolute',
+                  // bottom: '0px',
+                  // left: '0px',
+                  ...progressStyle,
+                  ...progressTransitionStyles[state],
+                }}
+              />
+            )}
+          </Transition>
+        </TransitionGroup>
+      )}
     </div>
   );
 };

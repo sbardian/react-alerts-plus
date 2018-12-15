@@ -21,7 +21,7 @@ class App extends React.Component {
       style: {},
       message: alertMessage,
       offset,
-      duration: 0,
+      duration: 3000,
       position: 'top left',
     };
 
@@ -33,7 +33,7 @@ class App extends React.Component {
         borderRadius: 0,
       },
       position: 'top right',
-      duration: 0,
+      duration: 8000,
     };
 
     const bottomRight = {
@@ -45,6 +45,7 @@ class App extends React.Component {
       position: 'bottom right',
       duration: 2000,
       id: 'my-bottom-right-alert',
+      progressBarColor: 'red',
     };
 
     const bottomLeft = {
@@ -70,7 +71,8 @@ class App extends React.Component {
       offset: '20px',
       position: 'bottom center',
       id: 'my-bottom-center-alert',
-      duration: 0,
+      duration: 2000,
+      progressBarColor: 'red',
     };
 
     const message = () => {
