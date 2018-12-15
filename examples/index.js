@@ -34,6 +34,7 @@ class App extends React.Component {
       },
       position: 'top right',
       duration: 8000,
+      showProgressBar: false,
     };
 
     const bottomRight = {
@@ -72,6 +73,7 @@ class App extends React.Component {
       position: 'bottom center',
       id: 'my-bottom-center-alert',
       duration: 2000,
+
       progressBarColor: 'red',
     };
 
@@ -148,6 +150,7 @@ class App extends React.Component {
                           title="Another Custom Alert"
                           message={customMessage}
                           imageUri={imageUri}
+                          showProgressBar={false}
                         />
                       ),
                     )

@@ -13,6 +13,7 @@ export const MyAlert = ({
   message,
   imageUri,
   transitionStyle,
+  showProgressBar,
   progressBarColor,
   alertTimeout,
   ...props
@@ -83,21 +84,23 @@ export const MyAlert = ({
       </div>
       {alertTimeout === 0 ? null : (
         <TransitionGroup>
-          <Transition timeout={0} appear>
-            {state => (
-              <div
-                style={{
-                  height: '10px',
-                  backgroundColor: `${progressBarColor}`,
-                  // position: 'absolute',
-                  // bottom: '0px',
-                  // left: '0px',
-                  ...progressStyle,
-                  ...progressTransitionStyles[state],
-                }}
-              />
-            )}
-          </Transition>
+          {showProgressBar && (
+            <Transition timeout={0} appear>
+              {state => (
+                <div
+                  style={{
+                    height: '10px',
+                    backgroundColor: `${progressBarColor}`,
+                    // position: 'absolute',
+                    // bottom: '0px',
+                    // left: '0px',
+                    ...progressStyle,
+                    ...progressTransitionStyles[state],
+                  }}
+                />
+              )}
+            </Transition>
+          )}
         </TransitionGroup>
       )}
     </div>

@@ -9,6 +9,7 @@ const Alert = ({
   alert: { style, id, message, theme, progressBarColor },
   close,
   transitionStyle,
+  showProgressBar,
   alertTimeout,
 }) => {
   const applyTheme = theme === 'dark' ? dark : light;
@@ -37,21 +38,23 @@ const Alert = ({
       />
       {alertTimeout === 0 ? null : (
         <TransitionGroup>
-          <Transition timeout={0} appear>
-            {state => (
-              <div
-                style={{
-                  height: '10px',
-                  backgroundColor: `${progressBarColor}`,
-                  position: 'absolute',
-                  bottom: '0px',
-                  left: '0px',
-                  ...progressStyle,
-                  ...progressTransitionStyles[state],
-                }}
-              />
-            )}
-          </Transition>
+          {showProgressBar && (
+            <Transition timeout={0} appear>
+              {state => (
+                <div
+                  style={{
+                    height: '10px',
+                    backgroundColor: `${progressBarColor}`,
+                    position: 'absolute',
+                    bottom: '0px',
+                    left: '0px',
+                    ...progressStyle,
+                    ...progressTransitionStyles[state],
+                  }}
+                />
+              )}
+            </Transition>
+          )}
         </TransitionGroup>
       )}
     </div>
@@ -67,6 +70,7 @@ Alert.propTypes = {
   }).isRequired,
   close: PropTypes.func.isRequired,
   transitionStyle: PropTypes.shape(),
+  showProgressBar: PropTypes.bool.isRequired,
   alertTimeout: PropTypes.number.isRequired,
 };
 

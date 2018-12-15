@@ -88,39 +88,43 @@ Options are passed as an object as the first argument to the show function.
 While z-index is not an option, you can pass a custom z-index in your styles and
 it will be applied. See below.
 
-| Option         | Type            | Description                                    |
-| -------------- | --------------- | ---------------------------------------------- |
-| message        | String / Number | message displayed in the alert                 |
-| id             | String / Number | id for the alert                               |
-| style          | Object          | defining javascript styles                     |
-| offset         | String          | defining the offset of the alert from position |
-| duration       | Number          | time in milliseconds for the alert to be shown |
-| position       | String          | placement of the alert                         |
-| theme          | String          | default alert theme colors                     |
-| AlertComponent | Component       | full custom alert component                    |
+| Option           | Type            | Description                                    |
+| ---------------- | --------------- | ---------------------------------------------- |
+| message          | String / Number | message displayed in the alert                 |
+| id               | String / Number | id for the alert                               |
+| style            | Object          | defining javascript styles                     |
+| offset           | String          | defining the offset of the alert from position |
+| duration         | Number          | time in milliseconds for the alert to be shown |
+| position         | String          | placement of the alert                         |
+| theme            | String          | default alert theme colors                     |
+| showProgessBar   | Bool            | show auto close progress bar                   |
+| progressBarColor | String          | progress bar color                             |
+| AlertComponent   | Component       | full custom alert component                    |
 
 ### Examples:
 
 ```
-  message:        'Hi alert here!'
-  id:             'my-alert'
-  style:          style: {
-                    backgroundColor: 'cornflowerblue',
-                    borderRadius: 0,
-                  }
-  offset:         '50px'
-  duration:       2000 (use 0 to never auto close the alert)
-  position:       'top left'
-                  'top center'
-                  'top right'
-                  'bottom left'
-                  'bottom center'
-                  'bottom right'
-  theme:          'light' or 'dark' (light is default)
-  AlertComponent: Default alert will be totally replaced by your custom alert.
-                  Only offset, duration, id, and position are used when passing a
-                  custom AlertComponent. See below for specifics about using
-                  your own custom alert component.
+  message:          'Hi alert here!'
+  id:               'my-alert'
+  style:            style: {
+                      backgroundColor: 'cornflowerblue',
+                      borderRadius: 0,
+                    }
+  offset:           '50px'
+  duration:         2000 (use 0 to never auto close the alert)
+  position:         'top left'
+                    'top center'
+                    'top right'
+                    'bottom left'
+                    'bottom center'
+                    'bottom right'
+  theme:            'light' or 'dark' (light is default)
+  showProgressBar   false
+  progressBarColor '#666', 'cornflowerblue', 'red'
+  AlertComponent:   Default alert will be totally replaced by your custom alert.
+                    Only offset, duration, id, and position are used when passing a
+                    custom AlertComponent. See below for specifics about using
+                    your own custom alert component.
 
   const optionsExample = {
         message: 'Hi alert here!',
@@ -134,6 +138,7 @@ it will be applied. See below.
         duration: 2000,
         position: 'top right',
         theme: 'dark',
+        progressBarColor: 'cornflowerblue',
       }
 ```
 
@@ -143,40 +148,132 @@ Passing a custom alert component will cause some options to be ignored. The
 close function will be added as a prop for you to consume in your custom alert
 component. **If you are going to use the close prop you will need to supply the
 custom ID with your options.** You can also pass any other props you might need
-in your custom alert component.
+in your custom alert component. See examples foler at the root of this repo.
 
 ```
-const MyAlertComponent = ({ close, myColor, myHeight, ...rest }) => {
+/* eslint-disable import/no-extraneous-dependencies */
+/** @jsx jsx */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { jsx, css } from '@emotion/core';
+import { Icon } from 'react-icons-kit';
+import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
+import { TransitionGroup, Transition } from 'react-transition-group';
+
+export const MyAlert = ({
+  close,
+  title,
+  message,
+  imageUri,
+  transitionStyle,
+  showProgressBar,
+  progressBarColor,
+  alertTimeout,
+  ...props
+}) => {
+  // console.log('rest = ', props);
+  const progressStyle = {
+    transition: `width ${alertTimeout}ms ease-in-out`,
+    width: '0px',
+  };
+
+  const progressTransitionStyles = {
+    entering: { width: '0px' },
+    entered: { width: '100%' },
+  };
   return (
-    <div key="randomKey">
-      Hi alert here!
-      <button type="button" onClick={close}>
-        close
-      </button>
+    <div
+      key="someRandomKey"
+      css={css`
+        display: grid;
+        grid-gap: 10px;
+        grid-template-rows: 40px 1fr 10px;
+        border: 1px solid lavenderblush;
+        justify-content: center;
+        padding: 20px;
+        width: 400px;
+        margin: 15px;
+        background-color: cadetblue;
+        box-shadow: 1px 1px 8px 1px #666;
+      `}
+      style={{
+        ...transitionStyle,
+      }}
+    >
+      <div
+        css={css`
+          display: grid;
+          grid-gap: 20px;
+          grid-template-columns: 1fr 20px;
+        `}
+      >
+        <header
+          css={css`
+            font-size: 18pt;
+            color: white;
+          `}
+        >
+          {title}
+        </header>
+        <div>
+          <Icon size={20} icon={closeIcon} onClick={close} />
+        </div>
+      </div>
+      <div
+        css={css`
+          display: grid;
+          grid-gap: 15px;
+          grid-template-columns: 200px 1fr;
+        `}
+      >
+        <img height="200" width="200" src={imageUri} alt="pic" />
+        <article
+          css={css`
+            color: #141414;
+          `}
+        >
+          {message}
+        </article>
+      </div>
+      {alertTimeout === 0 ? null : (
+        <TransitionGroup>
+          {showProgressBar && (
+            <Transition timeout={0} appear>
+              {state => (
+                <div
+                  style={{
+                    height: '10px',
+                    backgroundColor: `${progressBarColor}`,
+                    // position: 'absolute',
+                    // bottom: '0px',
+                    // left: '0px',
+                    ...progressStyle,
+                    ...progressTransitionStyles[state],
+                  }}
+                />
+              )}
+            </Transition>
+          )}
+        </TransitionGroup>
+      )}
     </div>
   );
 };
 
-class MyApp extends React.Component {
-  render() {
-    const options = {
-        id: 'my-alert',
-        offset: '50px',
-        position: 'top right',
-        duration: 0,
-      }
+MyAlert.propTypes = {
+  close: PropTypes.func,
+  title: PropTypes.string,
+  message: PropTypes.string,
+  imageUri: PropTypes.string,
+};
 
-      return (
-        <AlertProvider>
-          <div className="App">
-            <AlertWrapper>
-              {({ show, close }) => (
-                show(options, () => <MyAlertComponent myColor="blue" myHeight={100} anotherProp={XXX} andAnother={XXX} />);
-              )}
-            </AlertWrapper>
-          </div>
-        </AlertProvider>
-      )
-  }
-}
+MyAlert.defaultProps = {
+  close: () => {},
+  title: 'Default Title',
+  message: 'Default Message',
+  imageUri: '',
+};
+
+export default MyAlert;
+
 ```
