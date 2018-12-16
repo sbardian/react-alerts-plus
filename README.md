@@ -126,7 +126,7 @@ it will be applied. See below.
                     custom AlertComponent. See below for specifics about using
                     your own custom alert component. **While custom alert
                     components can be functional stateless components, Components,
-                    we recommend using PureComponents.
+                    we recommend using PureComponents.**
 
   const optionsExample = {
         message: 'Hi alert here!',
@@ -145,6 +145,9 @@ it will be applied. See below.
 ```
 
 ### Custom Alert Component:
+
+**While custom alert components can be functional stateless components,
+Components, we recommend using PureComponents.**
 
 Passing a custom alert component will cause some options to be ignored. The
 close function will be added as a prop for you to consume in your custom alert
