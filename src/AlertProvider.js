@@ -213,7 +213,7 @@ export default class AlertProvider extends React.Component {
                         const { AlertComponent } = a;
                         if (AlertComponent) {
                           return (
-                            <Transition key={a.key} timeout={0} appear>
+                            <Transition key={a.key} timeout={100} appear>
                               {state => (
                                 <AlertComponent
                                   close={() => this.close(a.id)}
@@ -223,6 +223,7 @@ export default class AlertProvider extends React.Component {
                                     ...defaultStyle,
                                     ...transitionStyles[state],
                                   }}
+                                  state={state}
                                   alertTimeout={a.duration}
                                   showProgressBar={a.showProgressBar}
                                   progressBarColor={a.progressBarColor}
@@ -232,7 +233,7 @@ export default class AlertProvider extends React.Component {
                           );
                         }
                         return (
-                          <Transition key={a.key} timeout={0} appear>
+                          <Transition key={a.key} timeout={100} appear>
                             {state => (
                               <Alert
                                 key={a.key}
@@ -242,6 +243,7 @@ export default class AlertProvider extends React.Component {
                                   ...defaultStyle,
                                   ...transitionStyles[state],
                                 }}
+                                state={state}
                                 alertTimeout={a.duration}
                                 showProgressBar={a.showProgressBar}
                                 progressBarColor={a.progressBarColor}

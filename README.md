@@ -99,7 +99,7 @@ it will be applied. See below.
 | theme            | String          | default alert theme colors                     |
 | showProgessBar   | Bool            | show auto close progress bar                   |
 | progressBarColor | String          | progress bar color                             |
-| AlertComponent   | Component       | full custom alert component                    |
+| AlertComponent   | PureComponent   | pure components recommended                    |
 
 ### Examples:
 
@@ -124,7 +124,9 @@ it will be applied. See below.
   AlertComponent:   Default alert will be totally replaced by your custom alert.
                     Only offset, duration, id, and position are used when passing a
                     custom AlertComponent. See below for specifics about using
-                    your own custom alert component.
+                    your own custom alert component. **While custom alert
+                    components can be functional stateless components, Components,
+                    we recommend using PureComponents.
 
   const optionsExample = {
         message: 'Hi alert here!',
@@ -158,107 +160,101 @@ import PropTypes from 'prop-types';
 import { jsx, css } from '@emotion/core';
 import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
-import { TransitionGroup, Transition } from 'react-transition-group';
 
-export const MyAlert = ({
-  close,
-  title,
-  message,
-  imageUri,
-  transitionStyle,
-  showProgressBar,
-  progressBarColor,
-  alertTimeout,
-  ...props
-}) => {
-  // console.log('rest = ', props);
-  const progressStyle = {
-    transition: `width ${alertTimeout}ms ease-in-out`,
-    width: '0px',
-  };
+class MyAlert extends React.PureComponent {
+  render() {
+    const {
+      close,
+      title,
+      message,
+      imageUri,
+      transitionStyle,
+      showProgressBar,
+      progressBarColor,
+      alertTimeout,
+      state,
+    } = this.props;
 
-  const progressTransitionStyles = {
-    entering: { width: '0px' },
-    entered: { width: '100%' },
-  };
-  return (
-    <div
-      key="someRandomKey"
-      css={css`
-        display: grid;
-        grid-gap: 10px;
-        grid-template-rows: 40px 1fr 10px;
-        border: 1px solid lavenderblush;
-        justify-content: center;
-        padding: 20px;
-        width: 400px;
-        margin: 15px;
-        background-color: cadetblue;
-        box-shadow: 1px 1px 8px 1px #666;
-      `}
-      style={{
-        ...transitionStyle,
-      }}
-    >
+    // console.log('rest = ', props);
+    const progressStyle = {
+      transition: `width ${alertTimeout}ms ease-in-out`,
+      width: '0px',
+    };
+
+    const progressTransitionStyles = {
+      entering: { width: '0px' },
+      entered: { width: '100%' },
+    };
+    return (
       <div
+        key="someRandomKey"
         css={css`
           display: grid;
-          grid-gap: 20px;
-          grid-template-columns: 1fr 20px;
+          grid-gap: 10px;
+          grid-template-rows: 40px 1fr 10px;
+          border: 1px solid lavenderblush;
+          justify-content: center;
+          padding: 20px;
+          width: 400px;
+          margin: 15px;
+          background-color: cadetblue;
+          box-shadow: 1px 1px 8px 1px #666;
         `}
+        style={{
+          ...transitionStyle,
+        }}
       >
-        <header
+        <div
           css={css`
-            font-size: 18pt;
-            color: white;
+            display: grid;
+            grid-gap: 20px;
+            grid-template-columns: 1fr 20px;
           `}
         >
-          {title}
-        </header>
-        <div>
-          <Icon size={20} icon={closeIcon} onClick={close} />
+          <header
+            css={css`
+              font-size: 18pt;
+              color: white;
+            `}
+          >
+            {title}
+          </header>
+          <div>
+            <Icon size={20} icon={closeIcon} onClick={close} />
+          </div>
         </div>
-      </div>
-      <div
-        css={css`
-          display: grid;
-          grid-gap: 15px;
-          grid-template-columns: 200px 1fr;
-        `}
-      >
-        <img height="200" width="200" src={imageUri} alt="pic" />
-        <article
+        <div
           css={css`
-            color: #141414;
+            display: grid;
+            grid-gap: 15px;
+            grid-template-columns: 200px 1fr;
           `}
         >
-          {message}
-        </article>
+          <img height="200" width="200" src={imageUri} alt="pic" />
+          <article
+            css={css`
+              color: #141414;
+            `}
+          >
+            {message}
+          </article>
+        </div>
+        {alertTimeout === 0
+          ? null
+          : showProgressBar && (
+              <div
+                style={{
+                  height: '10px',
+                  backgroundColor: `${progressBarColor}`,
+                  ...progressStyle,
+                  ...progressTransitionStyles[state],
+                }}
+              />
+            )}
       </div>
-      {alertTimeout === 0 ? null : (
-        <TransitionGroup>
-          {showProgressBar && (
-            <Transition timeout={0} appear>
-              {state => (
-                <div
-                  style={{
-                    height: '10px',
-                    backgroundColor: `${progressBarColor}`,
-                    // position: 'absolute',
-                    // bottom: '0px',
-                    // left: '0px',
-                    ...progressStyle,
-                    ...progressTransitionStyles[state],
-                  }}
-                />
-              )}
-            </Transition>
-          )}
-        </TransitionGroup>
-      )}
-    </div>
-  );
-};
+    );
+  }
+}
 
 MyAlert.propTypes = {
   close: PropTypes.func,

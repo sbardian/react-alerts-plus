@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AlertProvider, AlertWrapper } from '../src';
-import { MyAlert } from './MyAlert';
+import MyAlert from './MyAlert';
 
 class App extends React.Component {
   constructor(props) {
