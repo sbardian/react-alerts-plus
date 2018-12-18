@@ -1,8 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/no-multi-comp */
+/** @jsx jsx */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AlertProvider, AlertWrapper } from '../src';
+import { Icon } from 'react-icons-kit';
+import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
+import { jsx, css } from '@emotion/core';
+import { AlertProvider, AlertWrapper, CardAlert } from '../src';
 import MyAlert from './MyAlert';
 
 class App extends React.Component {
@@ -73,7 +78,6 @@ class App extends React.Component {
       position: 'bottom center',
       id: 'my-bottom-center-alert',
       duration: 2000,
-
       progressBarColor: 'red',
     };
 
@@ -125,25 +129,34 @@ class App extends React.Component {
                   type="button"
                   onClick={() =>
                     show(
-                      { ...bottomCenter, id: Math.random().toString() },
-                      props => (
-                        <MyAlert
-                          {...props}
-                          title="Lorem ipsum"
-                          message={customMessage}
-                          imageUri={imageUri}
-                        />
-                      ),
+                      {
+                        ...bottomCenter,
+                        id: Math.random().toString(),
+                        duration: 50000,
+                      },
+                      props => {
+                        return (
+                          <MyAlert
+                            {...props}
+                            title="Lorem ipsum"
+                            message={customMessage}
+                            imageUri={imageUri}
+                          />
+                        );
+                      },
                     )
                   }
                 >
-                  bottom center Custom 1
+                  bottom center Custom, +progress
                 </button>
                 <button
                   type="button"
                   onClick={() =>
                     show(
-                      { ...bottomCenter, id: Math.random().toString() },
+                      {
+                        ...bottomCenter,
+                        id: Math.random().toString(),
+                      },
                       props => (
                         <MyAlert
                           {...props}
@@ -156,7 +169,92 @@ class App extends React.Component {
                     )
                   }
                 >
-                  bottom center Custom 2
+                  bottom center Custom -progress
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    show(
+                      {
+                        ...bottomCenter,
+                        id: Math.random().toString(),
+                        duration: 5000,
+                      },
+                      props => (
+                        <div>
+                          <CardAlert
+                            render={({
+                              AlertHeader,
+                              AlertBody,
+                              AlertImage,
+                              AlertProgressBar,
+                            }) => {
+                              const {
+                                transitionStyle,
+                                close: cardAlertClose,
+                              } = props;
+
+                              return (
+                                <div
+                                  css={css`
+                                    display: grid;
+                                    grid-gap: 10px;
+                                    grid-template-rows: 40px 1fr 10px;
+                                    border: 1px solid lavenderblush;
+                                    justify-content: center;
+                                    padding: 20px;
+                                    width: 400px;
+                                    margin: 15px;
+                                    background-color: cadetblue;
+                                    box-shadow: 1px 1px 8px 1px #666;
+                                  `}
+                                  style={{
+                                    ...transitionStyle,
+                                  }}
+                                >
+                                  <div
+                                    css={css`
+                                      display: grid;
+                                      grid-gap: 20px;
+                                      grid-template-columns: 1fr 20px;
+                                    `}
+                                  >
+                                    <AlertHeader
+                                      title="this is a title"
+                                      style={{ fontSize: '24pt' }}
+                                    />
+                                    <Icon
+                                      size={20}
+                                      icon={closeIcon}
+                                      onClick={cardAlertClose}
+                                    />
+                                  </div>
+                                  <div
+                                    css={css`
+                                      display: grid;
+                                      grid-gap: 15px;
+                                      grid-template-columns: 200px 1fr;
+                                    `}
+                                  >
+                                    <AlertImage
+                                      height={200}
+                                      width={200}
+                                      imageSrc={imageUri}
+                                      alt="My Alert Image"
+                                    />
+                                    <AlertBody message="this is a message to body" />
+                                  </div>
+                                  <AlertProgressBar {...props} />
+                                </div>
+                              );
+                            }}
+                          />
+                        </div>
+                      ),
+                    )
+                  }
+                >
+                  CardAlert Bottom Center
                 </button>
                 {`  |  `}
                 <button type="button" onClick={() => close('my-alert')}>
