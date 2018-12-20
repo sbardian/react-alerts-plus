@@ -132,7 +132,7 @@ class App extends React.Component {
                       {
                         ...bottomCenter,
                         id: Math.random().toString(),
-                        duration: 50000,
+                        duration: 5000,
                       },
                       props => {
                         return (
@@ -177,6 +177,9 @@ class App extends React.Component {
                     show(
                       {
                         ...bottomCenter,
+                        progressBarColor:
+                          'linear-gradient(to right, yellow, orange, red)',
+                        progressBarHeight: '20px',
                         id: Math.random().toString(),
                         duration: 5000,
                       },
@@ -184,6 +187,7 @@ class App extends React.Component {
                         <div>
                           <CardAlert
                             render={({
+                              AlertContainer,
                               AlertHeader,
                               AlertBody,
                               AlertImage,
@@ -195,7 +199,7 @@ class App extends React.Component {
                               } = props;
 
                               return (
-                                <div
+                                <AlertContainer
                                   css={css`
                                     display: grid;
                                     grid-gap: 10px;
@@ -208,9 +212,7 @@ class App extends React.Component {
                                     background-color: cadetblue;
                                     box-shadow: 1px 1px 8px 1px #666;
                                   `}
-                                  style={{
-                                    ...transitionStyle,
-                                  }}
+                                  style={{ ...transitionStyle }}
                                 >
                                   <div
                                     css={css`
@@ -245,7 +247,7 @@ class App extends React.Component {
                                     <AlertBody message="this is a message to body" />
                                   </div>
                                   <AlertProgressBar {...props} />
-                                </div>
+                                </AlertContainer>
                               );
                             }}
                           />
