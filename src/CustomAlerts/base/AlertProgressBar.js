@@ -26,8 +26,7 @@ class AlertProgressBar extends React.PureComponent {
       : showProgressBar && (
           <div
             style={{
-              height: '10px',
-              backgroundColor: `${progressBarColor}`,
+              background: `${progressBarColor}`,
               ...progressStyle,
               ...progressTransitionStyles[state],
             }}
