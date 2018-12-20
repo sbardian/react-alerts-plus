@@ -184,74 +184,72 @@ class App extends React.Component {
                         duration: 5000,
                       },
                       props => (
-                        <div>
-                          <CardAlert
-                            render={({
-                              AlertContainer,
-                              AlertHeader,
-                              AlertBody,
-                              AlertImage,
-                              AlertProgressBar,
-                            }) => {
-                              const {
-                                transitionStyle,
-                                close: cardAlertClose,
-                              } = props;
+                        <CardAlert
+                          render={({
+                            AlertContainer,
+                            AlertHeader,
+                            AlertBody,
+                            AlertImage,
+                            AlertProgressBar,
+                          }) => {
+                            const {
+                              transitionStyle,
+                              close: cardAlertClose,
+                            } = props;
 
-                              return (
-                                <AlertContainer
+                            return (
+                              <AlertContainer
+                                css={css`
+                                  display: grid;
+                                  grid-gap: 10px;
+                                  grid-template-rows: 40px 1fr 10px;
+                                  border: 1px solid lavenderblush;
+                                  justify-content: center;
+                                  padding: 20px;
+                                  width: 400px;
+                                  margin: 15px;
+                                  background-color: cadetblue;
+                                  box-shadow: 1px 1px 8px 1px #666;
+                                `}
+                                style={{ ...transitionStyle }}
+                              >
+                                <div
                                   css={css`
                                     display: grid;
-                                    grid-gap: 10px;
-                                    grid-template-rows: 40px 1fr 10px;
-                                    border: 1px solid lavenderblush;
-                                    justify-content: center;
-                                    padding: 20px;
-                                    width: 400px;
-                                    margin: 15px;
-                                    background-color: cadetblue;
-                                    box-shadow: 1px 1px 8px 1px #666;
+                                    grid-gap: 20px;
+                                    grid-template-columns: 1fr 20px;
                                   `}
-                                  style={{ ...transitionStyle }}
                                 >
-                                  <div
-                                    css={css`
-                                      display: grid;
-                                      grid-gap: 20px;
-                                      grid-template-columns: 1fr 20px;
-                                    `}
-                                  >
-                                    <AlertHeader
-                                      title="this is a title"
-                                      style={{ fontSize: '24pt' }}
-                                    />
-                                    <Icon
-                                      size={20}
-                                      icon={closeIcon}
-                                      onClick={cardAlertClose}
-                                    />
-                                  </div>
-                                  <div
-                                    css={css`
-                                      display: grid;
-                                      grid-gap: 15px;
-                                      grid-template-columns: 200px 1fr;
-                                    `}
-                                  >
-                                    <AlertImage
-                                      height={200}
-                                      width={200}
-                                      imageSrc={imageUri}
-                                      alt="My Alert Image"
-                                    />
-                                    <AlertBody message="this is a message to body" />
-                                  </div>
-                                  <AlertProgressBar {...props} />
-                                </AlertContainer>
-                              );
-                            }}
-                          />
-                        </div>
+                                  <AlertHeader
+                                    title="this is a title"
+                                    style={{ fontSize: '24pt' }}
+                                  />
+                                  <Icon
+                                    size={20}
+                                    icon={closeIcon}
+                                    onClick={cardAlertClose}
+                                  />
+                                </div>
+                                <div
+                                  css={css`
+                                    display: grid;
+                                    grid-gap: 15px;
+                                    grid-template-columns: 200px 1fr;
+                                  `}
+                                >
+                                  <AlertImage
+                                    height={200}
+                                    width={200}
+                                    imageSrc={imageUri}
+                                    alt="My Alert Image"
+                                  />
+                                  <AlertBody message="this is a message to body" />
+                                </div>
+                                <AlertProgressBar {...props} />
+                              </AlertContainer>
+                            );
+                          }}
+                        />
                       ),
                     )
                   }
