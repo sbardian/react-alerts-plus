@@ -125,8 +125,9 @@ it will be applied. See below.
   showProgressBar   false
   progressBarColor '#666', 'cornflowerblue', 'red'
   AlertComponent:   Default alert will be totally replaced by your custom alert.
-                    Only offset, duration, id, showProgressBar, progressBarColor, and position are used when passing a
-                    custom AlertComponent. See below for specifics about using
+                    Only offset, duration, id, showProgressBar, progressBarColor,
+                    and position are used when passing a custom AlertComponent.
+                    See below for specifics about using
                     your own custom alert component. **While custom alert
                     components can be functional stateless components, Components,
                     we recommend using PureComponents.**
