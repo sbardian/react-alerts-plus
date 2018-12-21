@@ -32,7 +32,9 @@ class Alert extends React.PureComponent {
         id={id}
         style={{ ...applyTheme, display: 'flex', ...style, ...transitionStyle }}
       >
-        <span style={{ marginRight: '20px' }}>{message}</span>
+        <span style={{ marginRight: '20px', paddingRight: '20px' }}>
+          {message}
+        </span>
         <Icon
           size={20}
           icon={closeIcon}
