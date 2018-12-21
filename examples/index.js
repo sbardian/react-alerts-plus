@@ -206,7 +206,6 @@ class App extends React.Component {
                                   border: 1px solid lavenderblush;
                                   justify-content: center;
                                   padding: 20px;
-                                  width: 400px;
                                   margin: 15px;
                                   background-color: cadetblue;
                                   box-shadow: 1px 1px 8px 1px #666;
