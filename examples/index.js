@@ -26,7 +26,7 @@ class App extends React.Component {
       style: {},
       message: alertMessage,
       offset,
-      duration: 0,
+      duration: 5000,
       position: 'top left',
     };
 
@@ -73,6 +73,7 @@ class App extends React.Component {
       style: {
         minWidth: '300px',
       },
+      duration: 3000,
     };
 
     const bottomCenter = {
