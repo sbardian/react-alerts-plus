@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-indent */
 /** @jsx jsx */
 import React from 'react';
 import PropTypes from 'prop-types';
