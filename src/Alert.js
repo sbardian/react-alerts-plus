@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
-import { dark, light } from './AlertTemplates';
+import { dark, light, mobileDark, mobileLight } from './AlertTemplates';
 
 class Alert extends React.PureComponent {
   render() {
@@ -14,9 +14,18 @@ class Alert extends React.PureComponent {
       showProgressBar,
       alertTimeout,
       state,
+      isMobile,
     } = this.props;
 
-    const applyTheme = theme === 'dark' ? dark : light;
+    let selectedTheme =
+      theme === 'dark' ? { ...dark, ...style } : { ...light, ...style };
+
+    if (isMobile) {
+      selectedTheme = mobileLight;
+      if (theme === 'dark') {
+        selectedTheme = mobileDark;
+      }
+    }
 
     const progressStyle = {
       transition: `width ${alertTimeout}ms ease-in-out`,
@@ -31,7 +40,11 @@ class Alert extends React.PureComponent {
     return (
       <div
         id={id}
-        style={{ ...applyTheme, display: 'flex', ...style, ...transitionStyle }}
+        style={{
+          ...selectedTheme,
+          display: 'flex',
+          ...transitionStyle,
+        }}
       >
         <span style={{ marginRight: '20px', paddingRight: '20px' }}>
           {message}
@@ -74,6 +87,7 @@ Alert.propTypes = {
   showProgressBar: PropTypes.bool.isRequired,
   alertTimeout: PropTypes.number.isRequired,
   state: PropTypes.string.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 Alert.defaultProps = {

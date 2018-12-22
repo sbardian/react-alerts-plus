@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import { TransitionGroup, Transition } from 'react-transition-group';
+import withSizes from 'react-sizes';
 import AlertContext from './AlertContext';
 import getPositionStyles from './getPositionStyles';
 import AlertContainer from './AlertContainer';
@@ -17,16 +18,18 @@ const transitionStyles = {
   entered: { opacity: 1 },
 };
 
-export default class AlertProvider extends React.Component {
+class AlertProvider extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node,
     ]).isRequired,
+    isMobile: PropTypes.bool.isRequired,
   };
 
   state = {
     root: null,
+    isMobile: false,
     alertContainers: {
       topLeft: {
         offset: '10px',
@@ -59,6 +62,11 @@ export default class AlertProvider extends React.Component {
     const root = document.createElement('div');
     document.body.appendChild(root);
     this.setState({ root });
+
+    const { isMobile } = this.props;
+    this.setState({
+      isMobile,
+    });
   }
 
   getPosition = position => {
@@ -175,7 +183,7 @@ export default class AlertProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { alertContainers, root } = this.state;
+    const { alertContainers, root, isMobile } = this.state;
 
     const alert = {
       show: this.show,
@@ -195,6 +203,7 @@ export default class AlertProvider extends React.Component {
                     style={getPositionStyles(
                       position,
                       alertContainers[position].offset,
+                      isMobile,
                     )}
                   >
                     <TransitionGroup>
@@ -252,6 +261,7 @@ export default class AlertProvider extends React.Component {
                                 alertTimeout={a.duration}
                                 showProgressBar={a.showProgressBar}
                                 progressBarColor={a.progressBarColor}
+                                isMobile={isMobile}
                               />
                             )}
                           </Transition>
@@ -268,3 +278,9 @@ export default class AlertProvider extends React.Component {
     );
   }
 }
+
+const mapSizesToProps = ({ width }) => ({
+  isMobile: width < 600,
+});
+
+export default withSizes(mapSizesToProps)(AlertProvider);

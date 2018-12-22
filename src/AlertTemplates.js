@@ -21,3 +21,15 @@ export const dark = {
   color: '#fff',
   maxWidth: '300px',
 };
+
+export const mobileLight = {
+  ...light,
+  margin: '0px',
+  maxWidth: '100%',
+};
+
+export const mobileDark = {
+  ...dark,
+  margin: '0px',
+  maxWidth: '100%',
+};
