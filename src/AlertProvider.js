@@ -216,10 +216,6 @@ class AlertProvider extends React.Component {
                          *       allowing users to pass their component wrapped
                          *       in their own custom Transition effect?
                          *
-                         * TODO: Responsive is not great. . . maybe a screen check
-                         *       so if in mobile, we drop offset, and turn any top
-                         *       into a top 'toast', and any bottom into a bottom
-                         *       'toast'. . . ?
                          */
                         if (a.duration !== 0) {
                           setTimeout(() => this.close(a.id), a.duration);
