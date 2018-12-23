@@ -27,7 +27,7 @@ npm install react-alerts
 
 ### Usage: Wrap your app in the provider:
 
-```
+```jsx
 import { AlertProvider } from 'react-alerts';
 
 class MyApp extends React.Component {
@@ -36,14 +36,14 @@ class MyApp extends React.Component {
       <AlertProvider>
         <App />
       </AlertProvider>
-    )
+    );
   }
 }
 ```
 
 ### In your app where you would like to show alerts
 
-```
+```jsx
 import { AlertWrapper } from 'react-alerts';
 ...
 ...
@@ -234,7 +234,7 @@ CardAlert (the options you sent to show, see below) or passed manually.
 - showProgressBar,
 - state,
 
-```
+```jsx
 /** @jsx jsx */
 import React from 'react';
 import { Icon } from 'react-icons-kit';
@@ -354,7 +354,7 @@ you will need to supply the custom ID with your options.** You can also pass any
 other props you might need in your custom alert component. See examples foler at
 the root of this repo.
 
-```
+```jsx
 /* eslint-disable import/no-extraneous-dependencies */
 /** @jsx jsx */
 import React from 'react';
@@ -473,5 +473,4 @@ MyAlert.defaultProps = {
 };
 
 export default MyAlert;
-
 ```
