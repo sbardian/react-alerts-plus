@@ -10,6 +10,25 @@ import { jsx, css } from '@emotion/core';
 import { AlertProvider, AlertWrapper, CardAlert } from '../src';
 import MyAlert from './MyAlert';
 
+class MyButton extends React.Component {
+  render() {
+    const { onClick, name } = this.props;
+    return (
+      <button
+        type="button"
+        css={css`
+          border-radius: 0;
+          height: 35px;
+          margin-right: 10px;
+        `}
+        onClick={onClick}
+      >
+        {name}
+      </button>
+    );
+  }
+}
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -99,32 +118,22 @@ class App extends React.Component {
           <AlertWrapper>
             {({ show, close }) => (
               <div>
-                <button type="button" onClick={() => message()}>
-                  update message
-                </button>
-                <button type="button" onClick={() => show(topLeft)}>
-                  top left
-                </button>
-                <button type="button" onClick={() => show(topRight)}>
-                  top right
-                </button>
-                <button type="button" onClick={() => show(bottomLeft)}>
-                  bottom left
-                </button>
-                <button
-                  type="button"
+                <MyButton
+                  onClick={() => message()}
+                  name="update alert message"
+                />
+                <MyButton onClick={() => show(topLeft)} name="top left" />
+                <MyButton onClick={() => show(topRight)} name="top right" />
+                <MyButton onClick={() => show(bottomLeft)} name="bottom left" />
+                <MyButton
                   onClick={() => {
                     const myAlert = show(bottomRight);
                     console.log('Bottom Right alert ID: ', myAlert);
                   }}
-                >
-                  bottom right
-                </button>
-                <button type="button" onClick={() => show(topCenter)}>
-                  top center
-                </button>
-                <button
-                  type="button"
+                  name="bottom right"
+                />
+                <MyButton onClick={() => show(topCenter)} name="top center" />
+                <MyButton
                   onClick={() =>
                     show(
                       {
@@ -144,11 +153,9 @@ class App extends React.Component {
                       },
                     )
                   }
-                >
-                  bottom center Custom, +progress
-                </button>
-                <button
-                  type="button"
+                  name="bottom center Custom, +progress"
+                />
+                <MyButton
                   onClick={() =>
                     show(
                       {
@@ -166,11 +173,9 @@ class App extends React.Component {
                       ),
                     )
                   }
-                >
-                  bottom center Custom -progress
-                </button>
-                <button
-                  type="button"
+                  name="bottom center Custom -progress"
+                />
+                <MyButton
                   onClick={() =>
                     show(
                       {
@@ -250,13 +255,13 @@ class App extends React.Component {
                       ),
                     )
                   }
-                >
-                  CardAlert Bottom Center
-                </button>
+                  name="CardAlert Bottom Center"
+                />
                 {`  |  `}
-                <button type="button" onClick={() => close('my-alert')}>
-                  close bottom left
-                </button>
+                <MyButton
+                  onClick={() => close('my-alert')}
+                  name="close bottom left"
+                />
               </div>
             )}
           </AlertWrapper>
