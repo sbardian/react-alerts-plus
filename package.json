@@ -1,5 +1,5 @@
 {
-  "name": "react-alerts",
+  "name": "react-alerts-plus",
   "version": "0.0.1",
   "description": "Alerts for react.",
   "author": "Brian Andrews <sbardian@gmail.com> (https://github.com/sbardian)",
@@ -16,7 +16,7 @@
     "test:run": "cypress run",
     "test:open": "cypress open",
     "build": "babel src -d lib",
-    "prepublishOnly": "build"
+    "prepublishOnly": "yarn build"
   },
   "files": [
     "lib"
