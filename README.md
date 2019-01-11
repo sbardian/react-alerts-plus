@@ -1,6 +1,8 @@
 ![WIP](https://img.shields.io/badge/WIP-DO%20NOT%20USE-red.svg)
 
-# react-alerts
+# react-alerts-plus
+
+[Demo](https://codesandbox.io/s/4q2213m2kx)
 
 Shows an alert in the position and for the duration specified. You will most
 likely want to pass your own custom alert component to use with the library, see
@@ -16,19 +18,19 @@ maybe it will work better for your needs. Otherwise keep reading...
 ### Installation:
 
 ```
-yarn add react-alerts
+yarn add react-alerts-plus
 ```
 
 or
 
 ```
-npm install react-alerts
+npm install react-alerts-plus
 ```
 
 ### Usage: Wrap your app in the provider:
 
 ```jsx
-import { AlertProvider } from 'react-alerts';
+import { AlertProvider } from 'react-alerts-plus';
 
 class MyApp extends React.Component {
   render() {
@@ -44,7 +46,7 @@ class MyApp extends React.Component {
 ### In your app where you would like to show alerts
 
 ```jsx
-import { AlertWrapper } from 'react-alerts';
+import { AlertWrapper } from 'react-alerts-plus';
 ...
 ...
 render() {
@@ -84,8 +86,8 @@ ID.
 
 ### Alert Options:
 
-All three methods of using react-alerts accept the same options, though some
-maybe ignored with different alerts.
+All three methods of using react-alerts-plus accept the same options, though
+some maybe ignored with different alerts.
 
 Options are passed as an object, as the first argument to the show function.
 While z-index is not an option, you can pass a custom z-index in your styles and
@@ -148,7 +150,7 @@ it will be applied. See below.
       }
 ```
 
-### React-Alerts provides three different types of alerts.
+### react-alerts-plus provides three different types of alerts.
 
 - Default alerts
 - Base alert components
@@ -172,7 +174,7 @@ base alert components you wish to use.
 - AlertImage
 - AlertProgressBar
 
-As long as you pass props to this function you can make use of react-alerts
+As long as you pass props to this function you can make use of react-alerts-plus
 transitions (transitionStyle) and close function (see below).
 
 ### AlertContainer
@@ -240,7 +242,7 @@ import React from 'react';
 import { Icon } from 'react-icons-kit';
 import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
 import { jsx, css } from '@emotion/core';
-import { AlertProvider, AlertWrapper, CardAlert } from 'react-alerts';
+import { AlertProvider, AlertWrapper, CardAlert } from 'react-alerts-plus';
 ...
 ...
 render() {
