@@ -56,13 +56,7 @@ class App extends React.Component {
 
     const bottomLeft = {
       ...topLeft,
-      // message: 'Your request was successful.',
-      // style: {
-      //   borderColor: 'green',
-      //   borderRadius: 0,
-      // },
-      // duration: 0,
-      // id: 'my-alert',
+      id: 'my-alert',
       position: 'bottom left',
     };
 
