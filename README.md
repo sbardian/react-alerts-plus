@@ -1,4 +1,4 @@
-![WIP](https://img.shields.io/badge/WIP-DO%20NOT%20USE-red.svg)
+![WIP](https://img.shields.io/badge/WIP-Be%20ready%20for%20changes-yellow.svg)
 
 # react-alerts-plus
 
