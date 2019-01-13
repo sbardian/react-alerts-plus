@@ -42,6 +42,8 @@ class MyAlert extends React.PureComponent {
           justify-content: center;
           padding: 20px;
           margin: 15px;
+          min-width: 200px;
+          max-width: 400px;
           background-color: cadetblue;
           box-shadow: 1px 1px 8px 1px #666;
         `}
