@@ -353,8 +353,8 @@ Passing a custom alert component will cause some options to be ignored (see
 Option Examples above). The close function will be added as a prop for you to
 consume in your custom alert component. **If you are going to use the close prop
 you will need to supply the custom ID with your options.** You can also pass any
-other props you might need in your custom alert component. See examples foler at
-the root of this repo.
+other props you might need in your custom alert component. See the codesandbox
+demo link at the top of this README.
 
 ```jsx
 /* eslint-disable import/no-extraneous-dependencies */
