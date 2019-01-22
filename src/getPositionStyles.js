@@ -1,6 +1,5 @@
-const getPositionStyles = (position, offset, isMobile) => {
+const getPositionStyles = (position, offset, isMobile, zIndex = 100) => {
   const POSITION = 'fixed';
-  const ZINDEX = 100;
   const TRANSFORM = 'translate(-50%, 0%)';
   const CENTER_PERCENT = `50%`;
 
@@ -11,7 +10,7 @@ const getPositionStyles = (position, offset, isMobile) => {
           position: POSITION,
           top: `${offset}`,
           left: `${offset}`,
-          zIndex: ZINDEX,
+          zIndex,
         };
       }
       return {
@@ -19,7 +18,7 @@ const getPositionStyles = (position, offset, isMobile) => {
         top: '0px',
         right: '0px',
         left: '0px',
-        zIndex: ZINDEX,
+        zIndex,
       };
     case 'topRight':
       if (!isMobile) {
@@ -27,7 +26,7 @@ const getPositionStyles = (position, offset, isMobile) => {
           position: POSITION,
           top: `${offset}`,
           right: `${offset}`,
-          zIndex: ZINDEX,
+          zIndex,
         };
       }
       return {
@@ -35,7 +34,7 @@ const getPositionStyles = (position, offset, isMobile) => {
         top: '0px',
         right: '0px',
         left: '0px',
-        zIndex: ZINDEX,
+        zIndex,
       };
     case 'bottomLeft':
       if (!isMobile) {
@@ -43,7 +42,7 @@ const getPositionStyles = (position, offset, isMobile) => {
           position: POSITION,
           bottom: `${offset}`,
           left: `${offset}`,
-          zIndex: ZINDEX,
+          zIndex,
         };
       }
       return {
@@ -51,7 +50,7 @@ const getPositionStyles = (position, offset, isMobile) => {
         bottom: '0px',
         right: '0px',
         left: '0px',
-        zIndex: ZINDEX,
+        zIndex,
       };
     case 'bottomRight':
       if (!isMobile) {
@@ -59,7 +58,7 @@ const getPositionStyles = (position, offset, isMobile) => {
           position: POSITION,
           bottom: `${offset}`,
           right: `${offset}`,
-          zIndex: ZINDEX,
+          zIndex,
         };
       }
       return {
@@ -67,7 +66,7 @@ const getPositionStyles = (position, offset, isMobile) => {
         bottom: '0px',
         right: '0px',
         left: '0px',
-        zIndex: ZINDEX,
+        zIndex,
       };
     case 'topCenter':
       if (!isMobile) {
@@ -76,7 +75,7 @@ const getPositionStyles = (position, offset, isMobile) => {
           top: `${offset}`,
           left: CENTER_PERCENT,
           transform: TRANSFORM,
-          zIndex: ZINDEX,
+          zIndex,
         };
       }
       return {
@@ -84,7 +83,7 @@ const getPositionStyles = (position, offset, isMobile) => {
         top: '0px',
         right: '0px',
         left: '0px',
-        zIndex: ZINDEX,
+        zIndex,
       };
     case 'bottomCenter':
       if (!isMobile) {
@@ -93,7 +92,7 @@ const getPositionStyles = (position, offset, isMobile) => {
           bottom: `${offset}`,
           left: CENTER_PERCENT,
           transform: TRANSFORM,
-          zIndex: ZINDEX,
+          zIndex,
         };
       }
       return {
@@ -101,7 +100,7 @@ const getPositionStyles = (position, offset, isMobile) => {
         bottom: '0px',
         right: '0px',
         left: '0px',
-        zIndex: ZINDEX,
+        zIndex,
       };
     default:
       return null;

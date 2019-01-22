@@ -30,6 +30,7 @@ class AlertProvider extends React.Component {
   state = {
     root: null,
     isMobile: false,
+    zIndex: 100,
     alertContainers: {
       topLeft: {
         offset: '10px',
@@ -113,6 +114,7 @@ class AlertProvider extends React.Component {
       if (alertPosition.startsWith('top')) {
         return {
           ...state,
+          zIndex: style.zIndex,
           alertContainers: {
             ...state.alertContainers,
             [alertPosition]: {
@@ -138,6 +140,7 @@ class AlertProvider extends React.Component {
       }
       return {
         ...state,
+        zIndex: style.zIndex,
         alertContainers: {
           ...state.alertContainers,
           [alertPosition]: {
@@ -183,7 +186,7 @@ class AlertProvider extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { alertContainers, root, isMobile } = this.state;
+    const { alertContainers, root, isMobile, zIndex } = this.state;
 
     const alert = {
       show: this.show,
@@ -204,6 +207,7 @@ class AlertProvider extends React.Component {
                       position,
                       alertContainers[position].offset,
                       isMobile,
+                      zIndex,
                     )}
                   >
                     <TransitionGroup>
