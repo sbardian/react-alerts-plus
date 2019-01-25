@@ -9,6 +9,10 @@
     "alerts",
     "react"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sbardian/react-alerts-plus"
+  },
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src",
