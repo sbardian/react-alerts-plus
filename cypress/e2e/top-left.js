@@ -1,4 +1,4 @@
-describe('Test all alert positions', () => {
+describe('Test all alert positions in example app', () => {
   it('top left', () => {
     cy.visit('/')
       .getByTestId('top left')
