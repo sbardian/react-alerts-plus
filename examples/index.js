@@ -16,6 +16,7 @@ class MyButton extends React.Component {
     return (
       <button
         type="button"
+        data-testid={name}
         css={css`
           border-radius: 0;
           height: 35px;

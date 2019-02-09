@@ -14,7 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+/* eslint-disable import/no-extraneous-dependencies */
+// Import cypress-testing-library
+import 'cypress-testing-library/add-commands';
