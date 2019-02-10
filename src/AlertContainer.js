@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AlertContainer = ({ children, style }) => (
-  <div style={style} className="alertContainer">
+  <div
+    style={style}
+    className="alertContainer"
+    data-testid="alert-container-test"
+  >
     {children}
   </div>
 );
