@@ -1,5 +1,8 @@
 ![WIP](https://img.shields.io/badge/WIP-Be%20ready%20for%20changes-yellow.svg)
 
+![](https://img.shields.io/circleci/project/github/sbardian/react-alerts-plus/develop.svg?style=for-the-badge)
+![](https://img.shields.io/coveralls/github/sbardian/react-alerts-plus/develop.svg?style=for-the-badge)
+
 # react-alerts-plus
 
 [Demo](https://codesandbox.io/s/4q2213m2kx)
