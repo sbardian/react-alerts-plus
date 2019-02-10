@@ -40,6 +40,7 @@ class Alert extends React.PureComponent {
     return (
       <div
         id={id}
+        data-testid={id}
         style={{
           ...selectedTheme,
           display: 'flex',
