@@ -57,4 +57,11 @@ export default {
     position: 'bottom right',
     id: 'test-alert-bottom-right',
   },
+  badPosition: {
+    message: 'Alert ! ! !',
+    offset: '60px',
+    duration: 100,
+    position: 'bad position',
+    id: 'test-alert-bad-position',
+  },
 };
