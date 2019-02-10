@@ -202,4 +202,17 @@ describe('Default Alerts:', () => {
     fireEvent.click(getByText('close'));
     expect(queryByTestId(alertMocks.bottomRight.id)).toBeFalsy();
   });
+  it('failure invalid postion', () => {
+    expect.hasAssertions();
+    const { getByText, container, getByTestId, queryByTestId, debug } = render(
+      <AlertWrapper>
+        {({ show, close }) => {
+          expect(() => show(alertMocks.invalidPosition)).toThrowError(
+            'Invalid position prop invalid position',
+          );
+          return null;
+        }}
+      </AlertWrapper>,
+    );
+  });
 });
