@@ -4,6 +4,6 @@ module.exports = {
   coveragePathIgnorePatterns: ['/lib/', '/node_modules/'],
   testPathIgnorePatterns: ['/lib/'],
   modulePathIgnorePatterns: ['<rootDir>/lib/'],
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   moduleDirectories: ['node_modules', 'test-utils'],
 };
