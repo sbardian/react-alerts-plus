@@ -4682,7 +4682,7 @@ jest-docblock@^24.0.0:
   dependencies:
     detect-newline "^2.1.0"
 
-jest-dom@^3.0.2:
+jest-dom@3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/jest-dom/-/jest-dom-3.0.2.tgz#63094a95c721a5647dcaa7a87991c7a9ebf30608"
   integrity sha512-jDnI83LWZgIrlJe7d21SBx2vzcUiuSTErjIMn8bq+Wm/LF/k6XS+6zmpMUaGlykqC05uyWHNeg4K+Qr3atuVEw==
@@ -4927,7 +4927,7 @@ jest-worker@^24.0.0:
     merge-stream "^1.0.1"
     supports-color "^6.1.0"
 
-jest@^24.1.0:
+jest@24.1.0:
   version "24.1.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-24.1.0.tgz#b1e1135caefcf2397950ecf7f90e395fde866fd2"
   integrity sha512-+q91L65kypqklvlRFfXfdzUKyngQLOcwGhXQaLmVHv+d09LkNXuBuGxlofTFW42XMzu3giIcChchTsCNUjQ78A==
@@ -6563,7 +6563,7 @@ react-sizes@^1.0.4:
     lodash.throttle "^4.1.1"
     prop-types "^15.6.0"
 
-react-testing-library@^5.5.4:
+react-testing-library@5.5.4:
   version "5.5.4"
   resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-5.5.4.tgz#25321f78c41c7ec882a9e858f0e20d71a66a5338"
   integrity sha512-uXt1iQMY2kU756KbjsNkWtn+uZy8ZSpCmd8bDJZXavZoczhCUndk1LdBCaR/07tHnbTqc8c0ziEMJiaGxU+Xpw==
