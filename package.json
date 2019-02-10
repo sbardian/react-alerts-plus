@@ -17,7 +17,7 @@
   "scripts": {
     "lint": "eslint src",
     "dev": "webpack && webpack-dev-server  --mode development",
-    "test": "jest --env=jsdom",
+    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:run": "cypress run",
