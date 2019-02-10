@@ -1,4 +1,4 @@
-![WIP](https://img.shields.io/badge/WIP-Be%20ready%20for%20changes-yellow.svg)
+![WIP](https://img.shields.io/badge/WIP-Be%20ready%20for%20changes-yellow.svg?style=for-the-badge)
 
 ![](https://img.shields.io/circleci/project/github/sbardian/react-alerts-plus/develop.svg?style=for-the-badge)
 ![](https://img.shields.io/coveralls/github/sbardian/react-alerts-plus/develop.svg?style=for-the-badge)
