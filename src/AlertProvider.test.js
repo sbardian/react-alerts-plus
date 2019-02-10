@@ -37,6 +37,54 @@ describe('Default Alerts:', () => {
     fireEvent.click(getByText('close'));
     expect(queryByTestId(alertMocks.topLeft.id)).toBeFalsy();
   });
+  it('top left dark', () => {
+    const { getByText, getByTestId, queryByTestId } = render(
+      <AlertWrapper>
+        {({ show, close }) => (
+          <div>
+            <MyButton
+              onClick={() => show(alertMocks.topLeftDark)}
+              name="top left"
+            />
+            <button
+              type="button"
+              onClick={() => close('test-alert-top-left-dark')}
+            >
+              close
+            </button>
+          </div>
+        )}
+      </AlertWrapper>,
+    );
+    fireEvent.click(getByText('top left'));
+    expect(getByTestId(alertMocks.topLeftDark.id)).toBeTruthy();
+    fireEvent.click(getByText('close'));
+    expect(queryByTestId(alertMocks.topLeftDark.id)).toBeFalsy();
+  });
+  it('top left duration zero', () => {
+    const { getByText, getByTestId, queryByTestId } = render(
+      <AlertWrapper>
+        {({ show, close }) => (
+          <div>
+            <MyButton
+              onClick={() => show(alertMocks.topLeftDurationZero)}
+              name="top left"
+            />
+            <button
+              type="button"
+              onClick={() => close('test-alert-top-left-duration-zero')}
+            >
+              close
+            </button>
+          </div>
+        )}
+      </AlertWrapper>,
+    );
+    fireEvent.click(getByText('top left'));
+    expect(getByTestId(alertMocks.topLeftDurationZero.id)).toBeTruthy();
+    fireEvent.click(getByText('close'));
+    expect(queryByTestId(alertMocks.topLeftDurationZero.id)).toBeFalsy();
+  });
   it('top center', () => {
     const { getByText, getByTestId, queryByTestId } = render(
       <AlertWrapper>

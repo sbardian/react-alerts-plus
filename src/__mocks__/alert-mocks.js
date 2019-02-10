@@ -6,6 +6,22 @@ export default {
     position: 'top left',
     id: 'test-alert-top-left',
   },
+  topLeftDark: {
+    message: 'Alert ! ! !',
+    theme: 'dark',
+    offset: '60px',
+    duration: 100,
+    position: 'top left',
+    id: 'test-alert-top-left-dark',
+  },
+  topLeftDurationZero: {
+    message: 'Alert ! ! !',
+    theme: 'dark',
+    offset: '60px',
+    duration: 0,
+    position: 'top left',
+    id: 'test-alert-top-left-duration-zero',
+  },
   topCenter: {
     message: 'Alert ! ! !',
     offset: '60px',
