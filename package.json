@@ -19,7 +19,7 @@
     "dev": "webpack && webpack-dev-server  --mode development",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "test:run": "cypress run",
     "test:open": "cypress open",
     "build": "babel src -d lib",
