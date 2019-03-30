@@ -1,5 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cleanup, render, fireEvent } from 'test-utils';
 import 'jest-dom/extend-expect';
 import AlertWrapper from './AlertWrapper';
@@ -11,6 +12,11 @@ const MyButton = ({ onClick, name }) => {
       {name}
     </button>
   );
+};
+
+MyButton.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 afterEach(cleanup);
@@ -204,9 +210,9 @@ describe('Default Alerts:', () => {
   });
   it('failure invalid postion', () => {
     expect.hasAssertions();
-    const { getByText, container, getByTestId, queryByTestId, debug } = render(
+    render(
       <AlertWrapper>
-        {({ show, close }) => {
+        {({ show }) => {
           expect(() => show(alertMocks.invalidPosition)).toThrowError(
             'Invalid position prop invalid position',
           );
