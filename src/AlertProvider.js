@@ -219,8 +219,6 @@ class AlertProvider extends React.Component {
                          * TODO: Remove transition from custom alert component?
                          *       allowing users to pass their component wrapped
                          *       in their own custom Transition effect?
-                         *
-                         * TODO: Move examples to a public codesandbox.
                          */
                         if (a.duration !== 0) {
                           setTimeout(() => this.close(a.id), a.duration);
