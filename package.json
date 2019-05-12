@@ -51,7 +51,7 @@
     "@emotion/core": "10.0.10",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.1",
-    "babel-loader": "8.0.5",
+    "babel-loader": "8.0.6",
     "coveralls": "3.0.3",
     "cypress": "3.2.0",
     "cypress-testing-library": "2.6.0",
