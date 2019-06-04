@@ -38,7 +38,7 @@
     "prop-types": "^15.6.2",
     "react-icons-kit": "^1.2.1",
     "react-sizes": "^2.0.0",
-    "react-transition-group": "^2.5.1"
+    "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.4.4",
