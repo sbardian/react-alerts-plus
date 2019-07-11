@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { cleanup, render, fireEvent } from 'test-utils';
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 import AlertWrapper from './AlertWrapper';
 import alertMocks from './__mocks__/alert-mocks';
 
