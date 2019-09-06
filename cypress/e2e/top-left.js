@@ -1,9 +1,9 @@
 describe('Test all alert positions in example app', () => {
   it('top left', () => {
     cy.visit('/')
-      .getByTestId('top left')
+      .findByTestId('top left')
       .click()
-      .getByText('default message')
+      .findByText('default message')
       .should('exist')
       .wait(5040)
       .queryByText('default message')
@@ -11,9 +11,9 @@ describe('Test all alert positions in example app', () => {
   });
   it('top center', () => {
     cy.visit('/')
-      .getByTestId('top center')
+      .findByTestId('top center')
       .click()
-      .getByText('default message')
+      .findByText('default message')
       .should('exist')
       .wait(5040)
       .queryByText('default message')
@@ -21,9 +21,9 @@ describe('Test all alert positions in example app', () => {
   });
   it('top right', () => {
     cy.visit('/')
-      .getByTestId('top right')
+      .findByTestId('top right')
       .click()
-      .getByText('There was an error processing your request.')
+      .findByText('There was an error processing your request.')
       .should('exist')
       .wait(8040)
       .queryByText('There was an error processing your request.')
@@ -31,9 +31,9 @@ describe('Test all alert positions in example app', () => {
   });
   it('bottom left', () => {
     cy.visit('/')
-      .getByTestId('bottom left')
+      .findByTestId('bottom left')
       .click()
-      .getByText('default message')
+      .findByText('default message')
       .should('exist')
       .wait(5040)
       .queryByText('default message')
@@ -41,9 +41,9 @@ describe('Test all alert positions in example app', () => {
   });
   it('bottom center', () => {
     cy.visit('/')
-      .getByTestId('bottom left')
+      .findByTestId('bottom left')
       .click()
-      .getByText('default message')
+      .findByText('default message')
       .should('exist')
       .wait(5040)
       .queryByText('default message')
@@ -51,9 +51,9 @@ describe('Test all alert positions in example app', () => {
   });
   it('bottom left', () => {
     cy.visit('/')
-      .getByTestId('bottom left')
+      .findByTestId('bottom left')
       .click()
-      .getByText('default message')
+      .findByText('default message')
       .should('exist')
       .wait(5040)
       .queryByText('default message')
