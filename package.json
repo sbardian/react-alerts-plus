@@ -15,6 +15,7 @@
   },
   "main": "lib/index.js",
   "scripts": {
+    "cm": "git-cz",
     "lint": "eslint src",
     "dev": "webpack && webpack-dev-server  --mode development",
     "test": "jest",
@@ -28,10 +29,9 @@
   "files": [
     "lib"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint",
-      "pre-push": "yarn lint"
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "dependencies": {
@@ -48,6 +48,8 @@
     "@babel/plugin-syntax-object-rest-spread": "7.2.0",
     "@babel/preset-env": "7.5.5",
     "@babel/preset-react": "7.0.0",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "@emotion/core": "10.0.17",
     "@testing-library/cypress": "5.0.0",
     "@testing-library/jest-dom": "4.1.0",
@@ -55,19 +57,23 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
+    "commitizen": "^4.0.3",
     "coveralls": "3.0.6",
     "cypress": "3.4.1",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "6.3.0",
     "eslint-config-airbnb": "18.0.1",
     "eslint-config-prettier": "6.2.0",
     "eslint-plugin-cypress": "2.6.1",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "7.14.3",
     "html-webpack-plugin": "3.2.0",
     "husky": "3.0.5",
     "jest": "24.9.0",
-    "prettier": "1.18.2",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "style-loader": "1.0.0",
