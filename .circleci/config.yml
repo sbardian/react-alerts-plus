@@ -41,6 +41,6 @@ workflows:
           requires:
             - Cypress Install
           yarn: true
-          start: yarn develop
-          wait-on: '--timeout 20000 http://localhost:8000'
+          start: yarn dev
+          wait-on: '--timeout 20000 http://localhost:3001'
       - Jest
