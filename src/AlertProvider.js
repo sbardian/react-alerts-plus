@@ -1,93 +1,88 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom';
-import { TransitionGroup, Transition } from 'react-transition-group';
-import withSizes from 'react-sizes';
-import AlertContext from './AlertContext';
-import getPositionStyles from './getPositionStyles';
-import AlertContainer from './AlertContainer';
-import Alert from './Alert';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { createPortal } from 'react-dom'
+import { TransitionGroup, Transition } from 'react-transition-group'
+import withSizes from 'react-sizes'
+import AlertContext from './AlertContext'
+import getPositionStyles from './getPositionStyles'
+import AlertContainer from './AlertContainer'
+import Alert from './Alert'
 
 const defaultStyle = {
   transition: 'opacity 1000ms ease-in-out',
   opacity: 0,
-};
+}
 
 const transitionStyles = {
   entering: { opacity: 0 },
   entered: { opacity: 1 },
-};
+}
 
 class AlertProvider extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node,
-    ]).isRequired,
-    isMobile: PropTypes.bool.isRequired,
-  };
-
-  state = {
-    root: null,
-    isMobile: false,
-    zIndex: 100,
-    alertContainers: {
-      topLeft: {
-        offset: '10px',
-        alerts: [],
+  constructor() {
+    super()
+    this.state = {
+      root: null,
+      isMobile: false,
+      zIndex: 100,
+      alertContainers: {
+        topLeft: {
+          offset: '10px',
+          alerts: [],
+        },
+        topCenter: {
+          offset: '10px',
+          alerts: [],
+        },
+        topRight: {
+          offset: '10px',
+          alerts: [],
+        },
+        bottomLeft: {
+          offset: '10px',
+          alerts: [],
+        },
+        bottomCenter: {
+          offset: '10px',
+          alerts: [],
+        },
+        bottomRight: {
+          offset: '10px',
+          alerts: [],
+        },
       },
-      topCenter: {
-        offset: '10px',
-        alerts: [],
-      },
-      topRight: {
-        offset: '10px',
-        alerts: [],
-      },
-      bottomLeft: {
-        offset: '10px',
-        alerts: [],
-      },
-      bottomCenter: {
-        offset: '10px',
-        alerts: [],
-      },
-      bottomRight: {
-        offset: '10px',
-        alerts: [],
-      },
-    },
-  };
+    }
+  }
 
   componentDidMount() {
-    const root = document.createElement('div');
-    document.body.appendChild(root);
-    this.setState({ root });
+    const root = document.createElement('div')
+    document.body.appendChild(root)
+    this.setState({ root })
 
-    const { isMobile } = this.props;
+    const { isMobile } = this.props
     this.setState({
       isMobile,
-    });
+    })
   }
 
   getPosition = position => {
     switch (position) {
       case 'top left':
-        return 'topLeft';
+        return 'topLeft'
       case 'top center':
-        return 'topCenter';
+        return 'topCenter'
       case 'top right':
-        return 'topRight';
+        return 'topRight'
       case 'bottom left':
-        return 'bottomLeft';
+        return 'bottomLeft'
       case 'bottom center':
-        return 'bottomCenter';
+        return 'bottomCenter'
       case 'bottom right':
-        return 'bottomRight';
+        return 'bottomRight'
       default:
-        throw new Error(`Invalid position prop ${position}`);
+        throw new Error(`Invalid position prop ${position}`)
     }
-  };
+  }
 
   show = (
     {
@@ -103,12 +98,12 @@ class AlertProvider extends React.Component {
     },
     AlertComponent,
   ) => {
-    const key = Math.random();
+    const key = Math.random()
     const randomId = Math.random()
       .toString(36)
-      .substring(7);
+      .substring(7)
 
-    const alertPosition = this.getPosition(position);
+    const alertPosition = this.getPosition(position)
 
     this.setState(state => {
       if (alertPosition.startsWith('top')) {
@@ -136,7 +131,7 @@ class AlertProvider extends React.Component {
               ],
             },
           },
-        };
+        }
       }
       return {
         ...state,
@@ -162,11 +157,11 @@ class AlertProvider extends React.Component {
             ],
           },
         },
-      };
-    });
+      }
+    })
 
-    return id || randomId;
-  };
+    return id || randomId
+  }
 
   close = removeId => {
     this.setState(state => ({
@@ -181,24 +176,24 @@ class AlertProvider extends React.Component {
         }),
         {},
       ),
-    }));
-  };
+    }))
+  }
 
   render() {
-    const { children } = this.props;
-    const { alertContainers, root, isMobile, zIndex } = this.state;
+    const { children } = this.props
+    const { alertContainers, root, isMobile, zIndex } = this.state
 
     const alert = {
       show: this.show,
       close: this.close,
-    };
+    }
 
     return (
       <AlertContext.Provider value={alert}>
         {children}
         {root &&
           createPortal(
-            <Fragment>
+            <>
               {Object.keys(alertContainers).map(position =>
                 alertContainers[position].alerts.length ? (
                   <AlertContainer
@@ -221,9 +216,9 @@ class AlertProvider extends React.Component {
                          *       in their own custom Transition effect?
                          */
                         if (a.duration !== 0) {
-                          setTimeout(() => this.close(a.id), a.duration);
+                          setTimeout(() => this.close(a.id), a.duration)
                         }
-                        const { AlertComponent } = a;
+                        const { AlertComponent } = a
                         if (AlertComponent) {
                           return (
                             <Transition key={a.key} timeout={100} appear>
@@ -243,7 +238,7 @@ class AlertProvider extends React.Component {
                                 />
                               )}
                             </Transition>
-                          );
+                          )
                         }
                         return (
                           <Transition key={a.key} timeout={100} appear>
@@ -264,22 +259,30 @@ class AlertProvider extends React.Component {
                               />
                             )}
                           </Transition>
-                        );
+                        )
                       })}
                     </TransitionGroup>
                   </AlertContainer>
                 ) : null,
               )}
-            </Fragment>,
+            </>,
             root,
           )}
       </AlertContext.Provider>
-    );
+    )
   }
+}
+
+AlertProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  isMobile: PropTypes.bool.isRequired,
 }
 
 const mapSizesToProps = ({ width }) => ({
   isMobile: width < 600,
-});
+})
 
-export default withSizes(mapSizesToProps)(AlertProvider);
+export default withSizes(mapSizesToProps)(AlertProvider)
