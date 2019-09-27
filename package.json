@@ -75,7 +75,7 @@
     "lint-staged": "9.4.0",
     "prettier": "1.18.2",
     "react": "16.10.0",
-    "react-dom": "16.9.0",
+    "react-dom": "16.10.0",
     "style-loader": "1.0.0",
     "url-loader": "2.1.0",
     "webpack": "4.41.0",
