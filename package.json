@@ -26,6 +26,10 @@
     "build": "babel src -d lib",
     "prepublishOnly": "yarn build"
   },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=10.13.0"
+  },
   "files": [
     "lib"
   ],
