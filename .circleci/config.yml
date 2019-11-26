@@ -27,6 +27,7 @@ jobs:
 
       # run tests!
       - run: yarn test
+      - run: yarn test:coverage
   release:
     docker:
       - image: circleci/node:10.17
