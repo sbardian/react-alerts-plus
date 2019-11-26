@@ -1,9 +1,12 @@
 {
   "name": "react-alerts-plus",
-  "version": "1.0.0",
+  "version": "0.0.0-semantically-released",
   "description": "Alerts for react.",
   "author": "Brian Andrews <sbardian@gmail.com> (https://github.com/sbardian)",
   "license": "MIT",
+  "contributors": [
+    "Brian Andrews <sbardian@gmail.com>"
+  ],
   "keywords": [
     "alert",
     "alerts",
@@ -33,6 +36,9 @@
   "files": [
     "lib"
   ],
+  "release": {
+    "branch": "master"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -80,6 +86,7 @@
     "prettier": "1.19.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
+    "semantic-release": "^15.13.31",
     "style-loader": "1.0.0",
     "url-loader": "2.3.0",
     "webpack": "4.41.2",

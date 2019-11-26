@@ -26,7 +26,15 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test:coverage
+      - run: yarn test
+  release:
+    docker:
+      - image: circleci/node:10.17
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn build
+      - run: npx semantic-release
 
 workflows:
   version: 2
@@ -44,3 +52,9 @@ workflows:
           start: yarn dev
           wait-on: '--timeout 20000 http://localhost:3001'
       - Jest
+      - release:
+          requires:
+            - Jest
+          filters:
+            branches:
+              only: master
