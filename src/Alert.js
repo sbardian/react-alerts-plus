@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-indent */
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Icon } from 'react-icons-kit';
-import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close';
-import { dark, light, mobileDark, mobileLight } from './AlertTemplates';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Icon } from 'react-icons-kit'
+import { ic_close as closeIcon } from 'react-icons-kit/md/ic_close'
+import { dark, light, mobileDark, mobileLight } from './AlertTemplates'
 
 class Alert extends React.PureComponent {
   render() {
@@ -15,27 +15,27 @@ class Alert extends React.PureComponent {
       alertTimeout,
       state,
       isMobile,
-    } = this.props;
+    } = this.props
 
     let selectedTheme =
-      theme === 'dark' ? { ...dark, ...style } : { ...light, ...style };
+      theme === 'dark' ? { ...dark, ...style } : { ...light, ...style }
 
     if (isMobile) {
-      selectedTheme = mobileLight;
+      selectedTheme = mobileLight
       if (theme === 'dark') {
-        selectedTheme = mobileDark;
+        selectedTheme = mobileDark
       }
     }
 
     const progressStyle = {
       transition: `width ${alertTimeout}ms ease-in-out`,
       width: '0px',
-    };
+    }
 
     const progressTransitionStyles = {
       entering: { width: '0px' },
       entered: { width: '100%' },
-    };
+    }
 
     return (
       <div
@@ -72,7 +72,7 @@ class Alert extends React.PureComponent {
               />
             )}
       </div>
-    );
+    )
   }
 }
 
@@ -84,7 +84,7 @@ Alert.propTypes = {
     theme: PropTypes.string,
     progressBarColor: PropTypes.string,
     style: PropTypes.shape({
-      position: PropTypes.string.isRequired,
+      position: PropTypes.string,
       top: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       right: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       bottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -99,10 +99,10 @@ Alert.propTypes = {
   alertTimeout: PropTypes.number.isRequired,
   state: PropTypes.string.isRequired,
   isMobile: PropTypes.bool.isRequired,
-};
+}
 
 Alert.defaultProps = {
   transitionStyle: {},
-};
+}
 
-export default Alert;
+export default Alert
