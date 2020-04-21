@@ -68,7 +68,7 @@
     "babel-eslint": "10.1.0",
     "babel-loader": "8.1.0",
     "commitizen": "4.0.4",
-    "coveralls": "3.0.12",
+    "coveralls": "3.0.13",
     "cypress": "4.4.1",
     "cz-conventional-changelog": "3.1.0",
     "eslint": "6.8.0",
