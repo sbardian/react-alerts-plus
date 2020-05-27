@@ -51,13 +51,13 @@
     "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.8.4",
-    "@babel/core": "7.9.6",
+    "@babel/cli": "7.10.0",
+    "@babel/core": "7.10.0",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-export-default-from": "7.8.3",
     "@babel/plugin-syntax-object-rest-spread": "7.8.3",
-    "@babel/preset-env": "7.9.6",
-    "@babel/preset-react": "7.9.4",
+    "@babel/preset-env": "7.10.0",
+    "@babel/preset-react": "7.10.0",
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
     "@emotion/core": "10.0.28",
