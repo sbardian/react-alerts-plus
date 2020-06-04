@@ -10,7 +10,7 @@ executors:
 jobs:
   Jest:
     docker:
-      - image: circleci/node:10.20
+      - image: circleci/node:10.21
     working_directory: ~/repo
     steps:
       - checkout
@@ -34,7 +34,7 @@ jobs:
       - run: yarn test:coverage
   release:
     docker:
-      - image: circleci/node:10.20
+      - image: circleci/node:10.21
     steps:
       - checkout
       - run: yarn install
