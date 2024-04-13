@@ -63,7 +63,7 @@
     "@emotion/core": "10.3.1",
     "@testing-library/cypress": "7.0.7",
     "@testing-library/jest-dom": "5.17.0",
-    "@testing-library/react": "11.2.7",
+    "@testing-library/react": "15.0.2",
     "babel-core": "7.0.0-bridge.0",
     "@babel/eslint-parser": "7.22.6",
     "babel-loader": "8.3.0",
